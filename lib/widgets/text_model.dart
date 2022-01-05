@@ -28,8 +28,8 @@ class InputTexts extends StatelessWidget {
               suffixIcon: icon == null ? null : icon,
               labelText: label,
               labelStyle: TextStyle(color: Colors.black),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey)),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(5.0))),
               border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(5.0))))),
     );
