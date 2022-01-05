@@ -25,11 +25,20 @@ class Themes {
 
 TextStyle get titleTextStyle {
   return GoogleFonts.inter(
-    fontSize: 26.0, 
-    fontWeight: FontWeight.w600,
-  );
+      fontSize: 26.0,
+      fontWeight: FontWeight.w600,
+      color: Get.isDarkMode ? Colors.white : Colors.black);
 }
 
 TextStyle get bodyTextStyle {
-  return GoogleFonts.inter();
+  return GoogleFonts.inter(color: Get.isDarkMode ? Colors.white : Colors.black);
+}
+
+TextStyle get loginTextStyle {
+  return GoogleFonts.inter(
+      fontSize: 24, color: primaryClr, fontWeight: FontWeight.w700);
+}
+
+TextStyle get subtitleLoginTextStyle {
+  return GoogleFonts.inter(fontSize: 14, color: darkGreyClr);
 }
