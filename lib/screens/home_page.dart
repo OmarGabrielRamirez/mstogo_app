@@ -17,21 +17,21 @@ class HomePage extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               ButtonStyles(
-                child: Text("Confirmar Pedido", style: bodyTextStyle),
+                child: Text("Confirmar Pedido", style: buttonTextStyle),
                 color: Colors.green,
                 border: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30)),
               ),
               SizedBox(height: 30.0),
               ButtonStyles(
-                child: Text("Cancelar pedido", style: bodyTextStyle),
+                child: Text("Cancelar pedido", style: buttonTextStyle),
                 color: Colors.red,
                 border: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100)),
               ),
               SizedBox(height: 30.0),
               ButtonStyles(
-                child: Text("Programar envío", style: bodyTextStyle),
+                child: Text("Programar envío", style: buttonTextStyle),
                 color: Colors.indigo,
                 border: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)),

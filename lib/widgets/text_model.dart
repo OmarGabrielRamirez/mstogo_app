@@ -31,9 +31,7 @@ class InputTexts extends StatelessWidget {
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey)),
               border: OutlineInputBorder(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(5),
-                      topRight: Radius.circular(5))))),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0))))),
     );
   }
 }

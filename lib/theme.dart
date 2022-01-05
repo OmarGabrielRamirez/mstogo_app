@@ -34,6 +34,10 @@ TextStyle get bodyTextStyle {
   return GoogleFonts.inter(color: Get.isDarkMode ? Colors.white : Colors.black);
 }
 
+TextStyle get buttonTextStyle {
+  return GoogleFonts.inter(color: Colors.white);
+}
+
 TextStyle get loginTextStyle {
   return GoogleFonts.inter(
       fontSize: 24, color: primaryClr, fontWeight: FontWeight.w700);

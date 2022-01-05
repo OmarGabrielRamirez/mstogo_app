@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget {
       darkTheme: Themes.dark,
       themeMode: ThemeService().theme,
       title: 'Material App',
-      initialRoute: 'home',
+      initialRoute: 'home', 
       routes: {
         "home": (context) => HomePage(),
-        "second": (context) => SeconPage(),
+        "second": (context) => SecondPage(),
       },
     );
   }

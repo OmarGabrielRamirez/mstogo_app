@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mining_solutions/widgets/text_model.dart';
 
-class SeconPage extends StatelessWidget {
-  const SeconPage({Key? key}) : super(key: key);
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
