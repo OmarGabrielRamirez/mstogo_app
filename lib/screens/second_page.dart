@@ -3,6 +3,7 @@ import 'package:mining_solutions/widgets/text_model.dart';
 
 class SeconPage extends StatelessWidget {
   const SeconPage({Key? key}) : super(key: key);
+  static final String name = "second";
 
   @override
   Widget build(BuildContext context) {

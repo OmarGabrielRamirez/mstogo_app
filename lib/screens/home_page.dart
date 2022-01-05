@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mining_solutions/screens/second_page.dart';
 
 import 'package:mining_solutions/widgets/button_model.dart';
 
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_forward_ios_outlined),
         onPressed: () {
-          Navigator.pushReplacementNamed(context, 'second');
+          Navigator.pushReplacementNamed(context, SeconPage.name);
         },
       ),
     );
