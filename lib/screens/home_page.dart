@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:mining_solutions/widgets/text_model.dart';
 
 import '../theme.dart';
+=======
+import 'package:mining_solutions/widgets/button_model.dart';
+>>>>>>> 0a7bc420b4bef0d94de2a253cc7c351b770b4c49
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,6 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
@@ -43,6 +48,12 @@ class HomePage extends StatelessWidget {
           ),
         ),
       )),
+=======
+      appBar: AppBar(
+        title: Text("Escritura"),
+      ),
+      body: Center(child: ButtonStyles()),
+>>>>>>> 0a7bc420b4bef0d94de2a253cc7c351b770b4c49
     );
   }
 }
