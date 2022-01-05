@@ -3,7 +3,6 @@ import 'package:mining_solutions/widgets/text_model.dart';
 
 class SeconPage extends StatelessWidget {
   const SeconPage({Key? key}) : super(key: key);
-  static final String name = "second";
 
   @override
   Widget build(BuildContext context) {
@@ -11,23 +10,38 @@ class SeconPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Demo de cuadros de texto"),
       ),
-      body: Column(
-        children: [
-          InputTexts(
-            icon: Icon(Icons.remove_red_eye),
-            label: "Nombre",
+      body: SafeArea(
+        child: Container(
+          padding: EdgeInsets.only(top: 50),
+          child: Column(
+            children: [
+              InputTexts(
+                icon: Icon(Icons.person),
+                label: "Nombre",
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              InputTexts(
+                label: "Apellido",
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              InputTexts(
+                label: "Contraseña",
+                icon: Icon(Icons.remove_red_eye_sharp),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              InputTexts(
+                label: "Confirmar contraseña",
+                icon: Icon(Icons.lock),
+              ),
+            ],
           ),
-          InputTexts(
-            icon: Icon(Icons.add_circle_outline_sharp),
-            label: "Apellido",
-          ),
-          InputTexts(
-            label: "Contraseña",
-          ),
-          InputTexts(
-            label: "Confirmar contraseña",
-          )
-        ],
+        ),
       ),
     );
   }

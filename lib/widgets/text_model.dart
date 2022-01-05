@@ -18,18 +18,22 @@ class InputTexts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      style: TextStyle(color: color),
-      minLines: minLines,
-      maxLines: maxLines,
-      decoration: InputDecoration(
-          suffixIcon: icon == null ? null : icon,
-          labelText: label,
-          labelStyle: TextStyle(color: Colors.black),
-          focusedBorder:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
-          border:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey))),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      child: TextField(
+          style: TextStyle(color: color),
+          minLines: minLines,
+          maxLines: maxLines,
+          decoration: InputDecoration(
+              suffixIcon: icon == null ? null : icon,
+              labelText: label,
+              labelStyle: TextStyle(color: Colors.black),
+              focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey)),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(5),
+                      topRight: Radius.circular(5))))),
     );
   }
 }
