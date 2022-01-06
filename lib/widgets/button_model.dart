@@ -11,7 +11,11 @@ class ButtonStyles extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: MaterialButton(
-          onPressed: () {}, color: color, shape: border, child: child),
+          elevation: 0,
+          onPressed: () {},
+          color: color,
+          shape: border,
+          child: child),
     );
   }
 }

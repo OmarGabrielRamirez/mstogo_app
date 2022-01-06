@@ -35,7 +35,7 @@ TextStyle get bodyTextStyle {
 }
 
 TextStyle get buttonTextStyle {
-  return GoogleFonts.inter(color: Colors.white);
+  return GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600);
 }
 
 TextStyle get loginTextStyle {
@@ -45,4 +45,8 @@ TextStyle get loginTextStyle {
 
 TextStyle get subtitleLoginTextStyle {
   return GoogleFonts.inter(fontSize: 14, color: darkGreyClr);
+}
+
+TextStyle get passwordLoginTextStyle {
+  return GoogleFonts.inter(fontSize: 12, color: Colors.blueAccent);
 }
