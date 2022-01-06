@@ -41,11 +41,14 @@ class LoginPage extends StatelessWidget {
                 SizedBox(
                   height: 25,
                 ),
-                Text("Contraseña"),
+                Text("Contraseña",
+                style: subtitleLoginTextStyle,
+                ),
                 SizedBox(
                   height: 10,
                 ),
                 InputTexts(
+                  icon: Icon(Icons.visibility_off),
                   obscureText: true,
                 ),
                 SizedBox(height: 10),
@@ -70,9 +73,9 @@ class LoginPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10)),
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 80, vertical: 15),
+                                horizontal: 100, vertical: 15),
                             child: Text(
-                              "Inicia sesión",
+                              "Iniciar sesión",
                               style: buttonTextStyle,
                             ),
                           )),
@@ -80,7 +83,7 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Text("O vía"),
+                    Text("o inicia via"),
                     SizedBox(
                       height: 20,
                     ),
@@ -91,7 +94,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       child: Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                            EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                         child: Text(
                           "Via alterna",
                           style: buttonTextStyle,

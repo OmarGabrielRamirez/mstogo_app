@@ -48,5 +48,5 @@ TextStyle get subtitleLoginTextStyle {
 }
 
 TextStyle get passwordLoginTextStyle {
-  return GoogleFonts.inter(fontSize: 12, color: Colors.blueAccent);
+  return GoogleFonts.inter(fontSize: 14, color: primaryClr);
 }
