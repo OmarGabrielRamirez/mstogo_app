@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Container(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.topRight,
                     child: InkWell(
                       onTap: () async {},
                       child: Text(
