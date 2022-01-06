@@ -16,7 +16,6 @@ class SecondPage extends StatelessWidget {
           child: Column(
             children: [
               InputTexts(
-                obscureText: false,
                 icon: Icon(Icons.person),
                 label: "Nombre",
               ),
@@ -24,14 +23,12 @@ class SecondPage extends StatelessWidget {
                 height: 40,
               ),
               InputTexts(
-                obscureText: false,
                 label: "Apellido",
               ),
               SizedBox(
                 height: 40,
               ),
               InputTexts(
-                obscureText: false,
                 label: "Contraseña",
                 icon: Icon(Icons.remove_red_eye_sharp),
               ),
@@ -39,7 +36,6 @@ class SecondPage extends StatelessWidget {
                 height: 40,
               ),
               InputTexts(
-                obscureText: false,
                 label: "Confirmar contraseña",
                 icon: Icon(Icons.lock),
               ),

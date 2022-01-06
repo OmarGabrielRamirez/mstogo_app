@@ -3,9 +3,14 @@ import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/button_model.dart';
 import 'package:mining_solutions/widgets/text_model.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -36,21 +41,19 @@ class LoginPage extends StatelessWidget {
                   height: 10,
                 ),
                 InputTexts(
-                  obscureText: false,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 SizedBox(
                   height: 25,
                 ),
-                Text("Contraseña",
-                style: subtitleLoginTextStyle,
+                Text(
+                  "Contraseña",
+                  style: subtitleLoginTextStyle,
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                InputTexts(
-                  icon: Icon(Icons.visibility_off),
-                  obscureText: true,
-                ),
+                PasswordField(),
                 SizedBox(height: 10),
                 Container(
                     alignment: Alignment.topRight,
