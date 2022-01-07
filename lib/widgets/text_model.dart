@@ -23,7 +23,6 @@ class InputTexts extends StatelessWidget {
         keyboardType: keyboardType,
         style: bodyTextStyle,
         autocorrect: false,
-        autofocus: true,
         decoration: InputDecoration(
             hintText: hintText,
             suffixIcon: icon == null ? null : icon,
@@ -62,7 +61,6 @@ class _PasswordFieldState extends State<PasswordField> {
       obscureText: _obscureText,
       style: bodyTextStyle,
       autocorrect: false,
-      autofocus: true,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),
