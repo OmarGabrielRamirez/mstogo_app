@@ -14,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -76,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(10)),
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                                horizontal: 100, vertical: 15),
+                                horizontal: 115, vertical: 20),
                             child: Text(
                               "Iniciar sesión",
                               style: buttonTextStyle,
@@ -97,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                            EdgeInsets.symmetric(horizontal: 115, vertical: 20),
                         child: Text(
                           "Via alterna",
                           style: buttonTextStyle,
