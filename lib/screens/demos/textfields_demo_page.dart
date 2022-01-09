@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mining_solutions/widgets/text_model.dart';
+import 'package:mining_solutions/widgets/input_model.dart';
 
 class SecondPage extends StatelessWidget {
   const SecondPage({Key? key}) : super(key: key);
@@ -15,27 +15,27 @@ class SecondPage extends StatelessWidget {
           padding: EdgeInsets.only(top: 50),
           child: Column(
             children: [
-              InputTexts(
+              Input(
                 icon: Icon(Icons.person),
                 label: "Nombre",
               ),
               SizedBox(
                 height: 40,
               ),
-              InputTexts(
+              Input(
                 label: "Apellido",
               ),
               SizedBox(
                 height: 40,
               ),
-              InputTexts(
+              Input(
                 label: "Contraseña",
                 icon: Icon(Icons.remove_red_eye_sharp),
               ),
               SizedBox(
                 height: 40,
               ),
-              InputTexts(
+              Input(
                 label: "Confirmar contraseña",
                 icon: Icon(Icons.lock),
               ),

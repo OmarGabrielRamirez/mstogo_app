@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/button_model.dart';
-import 'package:mining_solutions/widgets/text_model.dart';
+import 'package:mining_solutions/widgets/input_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
         child: GestureDetector(
           onTap: () {
             final FocusScopeNode focus = FocusScope.of(context);
-            if (!focus.hasPrimaryFocus && focus.hasFocus){
+            if (!focus.hasPrimaryFocus && focus.hasFocus) {
               FocusManager.instance.primaryFocus!.unfocus();
             }
           },
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  InputTexts(
+                  Input(
                     keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(
@@ -79,21 +79,16 @@ class _LoginPageState extends State<LoginPage> {
                   Column(
                     children: [
                       Center(
-                        child: ButtonStyles(
-                            color: Color(0xFF012AFF),
-                            border: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Container(
-                              width: double.infinity,
-                              height: size.height * 0.07,                                                           
-                                child: Center(
-                                  child: Text(
-                                    "Iniciar sesión",
-                                    style: buttonTextStyle,
-                                  ),
-                                ),
-                              ),
-                            )),                      
+                        child: Button(
+                          color: Color(0xFF012AFF),
+                          text: "Iniciar sesión",
+                          width: double.infinity,
+                          height: size.height * 0.07,
+                          action: () {
+                            Navigator.of(context).pushNamed('second');
+                          },
+                        ),
+                      ),
                       SizedBox(
                         height: 20,
                       ),
@@ -101,21 +96,11 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 20,
                       ),
-                      ButtonStyles(
+                      Button(
                         color: Colors.grey[500],
-                        border: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                              height: size.height * 0.07,
-                          child: Center(
-                            child: Text(
-                              "Via alterna",
-                              style: buttonTextStyle,
-                            ),
-                          ),
-                        ),
+                        width: double.infinity,
+                        height: size.height * 0.07,
+                        text: "Número de teléfono",
                       ),
                       SizedBox(
                         height: size.height * 0.1,
@@ -124,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: InkWell(
                         onTap: () async {},
                         child: Text(
-                          "¿Crear una cuenta?",
+                          "¿No tienes una cuenta? Regístrate",
                           style: passwordLoginTextStyle,
                         ),
                       )),

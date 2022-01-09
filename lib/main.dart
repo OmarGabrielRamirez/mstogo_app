@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mining_solutions/screens/buttons_demo_page.dart';
+import 'package:mining_solutions/screens/demos/buttons_demo_page.dart';
 import 'package:mining_solutions/screens/login_page.dart';
-import 'package:mining_solutions/screens/textfields_demo_page.dart';
+import 'package:mining_solutions/screens/demos/textfields_demo_page.dart';
 
 import 'services/theme_services.dart';
 import 'theme.dart';

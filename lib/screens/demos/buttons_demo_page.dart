@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mining_solutions/widgets/button_model.dart';
 
-import '../theme.dart';
+import '../../theme.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -16,25 +16,16 @@ class HomePage extends StatelessWidget {
           child: Container(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              ButtonStyles(
-                child: Text("Confirmar Pedido", style: buttonTextStyle),
+              Button(
                 color: Colors.green,
-                border: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
               ),
               SizedBox(height: 30.0),
-              ButtonStyles(
-                child: Text("Cancelar pedido", style: buttonTextStyle),
+              Button(
                 color: Colors.red,
-                border: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100)),
               ),
               SizedBox(height: 30.0),
-              ButtonStyles(
-                child: Text("Programar envío", style: buttonTextStyle),
+              Button(
                 color: Colors.indigo,
-                border: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
               )
             ]),
           ),

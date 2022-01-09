@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mining_solutions/theme.dart';
 
-class InputTexts extends StatelessWidget {
+class Input extends StatelessWidget {
   final Color? color;
   final Icon? icon;
   final String? label;
   final String? hintText;
   final TextInputType? keyboardType;
 
-  const InputTexts({
+  const Input({
     Key? key,
     this.color,
     this.icon,
@@ -71,7 +71,7 @@ class _PasswordFieldState extends State<PasswordField> {
             _toggle();
           },
           child: Icon(
-            _password ? Icons.visibility : Icons.visibility_off,
+            _obscureText ? Icons.visibility : Icons.visibility_off,
             color: Colors.grey,
           ),
         ),
