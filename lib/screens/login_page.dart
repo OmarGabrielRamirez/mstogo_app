@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   "Contraseña",
-                  style: subtitleLoginTextStyle,
+                  style: TextStyle(fontSize: size.aspectRatio),
                 ),
                 SizedBox(
                   height: 10,

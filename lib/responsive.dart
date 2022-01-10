@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import "dart:math" as math;
 
 class Responsive {
-  var _width;
-  var _height;
-  var _diagonal;
+  var _width = 0.0;
+  var _height = 0.0;
+  var _diagonal = 0.0;
   bool? _isTablet;
 
   double get width => _width;

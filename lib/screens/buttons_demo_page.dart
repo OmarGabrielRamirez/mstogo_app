@@ -4,7 +4,7 @@ import 'package:mining_solutions/widgets/button_model.dart';
 
 import '../theme.dart';
 
-class HomePage extends StatelessWidget {
+class FirstDemoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

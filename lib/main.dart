@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:mining_solutions/screens/home_page.dart';
 import 'package:mining_solutions/screens/login_page.dart';
-import 'package:mining_solutions/screens/second_page.dart';
+
+import 'package:provider/provider.dart';
 
 import 'services/theme_services.dart';
 import 'theme.dart';
@@ -18,11 +20,11 @@ class MyApp extends StatelessWidget {
       darkTheme: Themes.dark,
       themeMode: ThemeService().theme,
       title: 'Material App',
-      initialRoute: 'login',
+      initialRoute: 'home',
       routes: {
         "login": (context) => LoginPage(),
         "home": (context) => HomePage(),
-        "second": (context) => SecondPage(),
+        // "second": (context) => SecondPage(),
       },
     );
   }

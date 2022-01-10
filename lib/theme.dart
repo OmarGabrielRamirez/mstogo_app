@@ -9,6 +9,7 @@ const Color yellowClr = Color(0xFFFFA901);
 const Color white = Colors.white;
 const Color primaryClr = Color(0xFF012AFF);
 Color? darkHeaderClr = Colors.grey[800];
+double fontSize = 0;
 
 class Themes {
   static final light = ThemeData(
@@ -25,7 +26,7 @@ class Themes {
 
 TextStyle get titleTextStyle {
   return GoogleFonts.inter(
-      fontSize: 26.0,
+      fontSize: fontSize,
       fontWeight: FontWeight.w600,
       color: Get.isDarkMode ? Colors.white : Colors.black);
 }
@@ -35,7 +36,8 @@ TextStyle get bodyTextStyle {
 }
 
 TextStyle get buttonTextStyle {
-  return GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600);
+  return GoogleFonts.inter(
+      color: Colors.white, fontWeight: FontWeight.w600, fontSize: fontSize);
 }
 
 TextStyle get loginTextStyle {
