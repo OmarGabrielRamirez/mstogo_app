@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 import 'package:mining_solutions/screens/home_page.dart';
 import 'package:mining_solutions/screens/login_page.dart';
 
-import 'package:provider/provider.dart';
-
 import 'services/theme_services.dart';
 import 'theme.dart';
 
