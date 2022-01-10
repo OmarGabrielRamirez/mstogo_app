@@ -26,11 +26,22 @@ class _LoginPageState extends State<LoginPage> {
             }
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                      height: 42.0,
+                      width: 109.0,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage('assets/logo.png'),
+                        fit: BoxFit.fill,
+                      ))),
                   Text(
                     "Inicia Sesión",
                     style: loginTextStyle,
@@ -40,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: subtitleLoginTextStyle,
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 30,
                   ),
                   Text(
                     "Email",
@@ -53,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 20,
                   ),
                   Text(
                     "Contraseña",
@@ -63,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 10,
                   ),
                   PasswordField(),
-                  SizedBox(height: 10),
+                  SizedBox(height: 20),
                   Container(
                       alignment: Alignment.topRight,
                       child: InkWell(
@@ -74,18 +85,21 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       )),
                   SizedBox(
-                    height: 50,
+                    height: 20,
                   ),
                   Column(
                     children: [
                       Center(
                         child: Button(
-                          color: Color(0xFF012AFF),
-                          text: "Iniciar sesión",
+                          color: Color(0xFF259793),
+                          text: Text(
+                            "Iniciar sesión",
+                            style: buttonTextStyle,
+                          ),
                           width: double.infinity,
                           height: size.height * 0.07,
                           action: () {
-                            Navigator.of(context).pushNamed('second');
+                            Navigator.of(context).pushNamed('home');
                           },
                         ),
                       ),
@@ -97,10 +111,11 @@ class _LoginPageState extends State<LoginPage> {
                         height: 20,
                       ),
                       Button(
-                        color: Colors.grey[500],
+                        color: Color(0xFFD8F6F0),
                         width: double.infinity,
                         height: size.height * 0.07,
-                        text: "Número de teléfono",
+                        text: Text("Número de teléfono",
+                            style: buttonTextDarkStyle),
                       ),
                       SizedBox(
                         height: size.height * 0.1,

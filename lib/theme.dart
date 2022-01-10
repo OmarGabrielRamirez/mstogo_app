@@ -7,7 +7,7 @@ const Color midGreyClr = Color(0xFF9A9494);
 const Color lightGreyClr = Color(0xFFEAEAEA);
 const Color yellowClr = Color(0xFFFFA901);
 const Color white = Colors.white;
-const Color primaryClr = Color(0xFF012AFF);
+const Color primaryClr = Color(0xFF259793);
 Color? darkHeaderClr = Colors.grey[800];
 
 class Themes {
@@ -36,6 +36,11 @@ TextStyle get bodyTextStyle {
 
 TextStyle get buttonTextStyle {
   return GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600);
+}
+
+TextStyle get buttonTextDarkStyle {
+  return GoogleFonts.inter(
+      color: Color(0xFF259793), fontWeight: FontWeight.w600);
 }
 
 TextStyle get loginTextStyle {

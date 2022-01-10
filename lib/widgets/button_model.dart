@@ -4,13 +4,18 @@ import '../theme.dart';
 
 class Button extends StatelessWidget {
   final Color? color;
-  final String? text;
+  final Text? text;
   final double? width;
   final double? height;
   final action;
-  const Button(
-      {Key? key, this.color, this.text, this.width, this.height, this.action})
-      : super(key: key);
+  const Button({
+    Key? key,
+    this.color,
+    this.text,
+    this.width,
+    this.height,
+    this.action,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +33,7 @@ class Button extends StatelessWidget {
           width: width,
           height: height,
           child: Center(
-            child: Text(
-              "${text}",
-              style: buttonTextStyle,
-            ),
+            child: text,
           ),
         ),
       ),
