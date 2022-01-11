@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mining_solutions/providers/verification_code_info.dart';
 import 'package:mining_solutions/theme.dart';
+
+import 'package:provider/provider.dart';
 
 class Input extends StatelessWidget {
   final Color? color;
@@ -75,6 +78,116 @@ class _PasswordFieldState extends State<PasswordField> {
             color: Colors.grey,
           ),
         ),
+      ),
+    );
+  }
+}
+
+// Country Field Input
+class CountryField extends StatefulWidget {
+  final TextInputType? keyboardType;
+  final TextEditingController? controller;
+
+  const CountryField({Key? key, this.keyboardType, this.controller})
+      : super(key: key);
+
+  @override
+  State<CountryField> createState() => _CountryFieldState();
+}
+
+class _CountryFieldState extends State<CountryField> {
+  String? _selectedCountryCode;
+  List<String> _countryCodes = ['+52', '+57'];
+
+  initState() {
+    _selectedCountryCode = _countryCodes[0];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final phoneOTP = Provider.of<VerificationCodeInfo>(context);
+
+    var countryDropDown = Container(
+      decoration: new BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          right: BorderSide(width: 0.5, color: Colors.grey),
+        ),
+      ),
+      height: 45.0,
+      margin: const EdgeInsets.all(3.0),
+      //width: 300.0,
+      child: DropdownButtonHideUnderline(
+        child: ButtonTheme(
+          alignedDropdown: true,
+          child: DropdownButton(
+            value: _selectedCountryCode,
+            items: _countryCodes.map((String value) {
+              return new DropdownMenuItem<String>(
+                  value: value,
+                  child: new Text(
+                    value,
+                    style: TextStyle(fontSize: 16.0),
+                  ));
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                _selectedCountryCode = value as String;
+                phoneOTP.countryCode = _selectedCountryCode as String;
+              });
+            },
+          ),
+        ),
+      ),
+    );
+    return TextFormField(
+        controller: widget.controller,
+        validator: (String? value) {
+          if (value != null && value.isEmpty) {
+            return "Por favor ingrese su número";
+          }
+          return null;
+        },
+        keyboardType: widget.keyboardType,
+        style: bodyTextStyle,
+        autocorrect: false,
+        decoration: InputDecoration(
+            prefixIcon: countryDropDown,
+            labelStyle: TextStyle(color: Colors.black),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0))),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)))));
+  }
+}
+
+// Create an input widget that takes only one digit
+class OtpInput extends StatelessWidget {
+  final TextEditingController controller;
+  final bool autoFocus;
+  const OtpInput(this.controller, this.autoFocus, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 60,
+      width: 50,
+      child: TextField(
+        autofocus: autoFocus,
+        textAlign: TextAlign.center,
+        keyboardType: TextInputType.number,
+        controller: controller,
+        maxLength: 1,
+        cursorColor: Theme.of(context).primaryColor,
+        decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            counterText: '',
+            hintStyle: TextStyle(color: Colors.black, fontSize: 20.0)),
+        onChanged: (value) {
+          if (value.length == 1) {
+            FocusScope.of(context).nextFocus();
+          }
+        },
       ),
     );
   }

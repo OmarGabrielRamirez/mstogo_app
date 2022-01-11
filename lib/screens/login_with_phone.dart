@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:mining_solutions/providers/verification_code_info.dart';
 import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/button_model.dart';
 import 'package:mining_solutions/widgets/input_model.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import 'package:provider/provider.dart';
+
+class LoginWithPhone extends StatefulWidget {
+  const LoginWithPhone({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _LoginWithPhoneState createState() => _LoginWithPhoneState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginWithPhoneState extends State<LoginWithPhone> {
+  // TODO Crear función para llamar al backend y generar el código
+
+  sendOtp(String phone) async {
+    // Function to call WebService to send OTP Code
+    Future.delayed(const Duration(milliseconds: 400), () {
+      Navigator.of(context).pushNamed("enter_verification_code");
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    TextEditingController _phoneController = TextEditingController();
+    final phoneOTP = Provider.of<VerificationCodeInfo>(context);
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -74,36 +87,19 @@ class _LoginPageState extends State<LoginPage> {
                     height: 30,
                   ),
                   Text(
-                    "Email",
+                    "Número de teléfono",
                     style: subtitleLoginTextStyle,
                   ),
                   SizedBox(
                     height: 10,
                   ),
-                  Input(
-                    keyboardType: TextInputType.emailAddress,
+                  CountryField(
+                    controller: _phoneController,
+                    keyboardType: TextInputType.phone,
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "Contraseña",
-                    style: subtitleLoginTextStyle,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  PasswordField(),
-                  SizedBox(height: 20),
-                  Container(
-                      alignment: Alignment.topRight,
-                      child: InkWell(
-                        onTap: () async {},
-                        child: Text(
-                          "¿Olvidaste tu contraseña?",
-                          style: passwordLoginTextStyle,
-                        ),
-                      )),
                   SizedBox(
                     height: 20,
                   ),
@@ -113,13 +109,14 @@ class _LoginPageState extends State<LoginPage> {
                         child: Button(
                           color: Color(0xFF259793),
                           text: Text(
-                            "Iniciar sesión",
+                            "Enviar código",
                             style: buttonTextStyle,
                           ),
                           width: double.infinity,
                           height: size.height * 0.07,
                           action: () {
-                            Navigator.of(context).pushNamed('home');
+                            phoneOTP.phone = _phoneController.text;
+                            sendOtp(phoneOTP.phone);
                           },
                         ),
                       ),
@@ -131,13 +128,13 @@ class _LoginPageState extends State<LoginPage> {
                         height: 20,
                       ),
                       Button(
+                        action: () {
+                          Navigator.pop(context);
+                        },
                         color: Color(0xFFD8F6F0),
                         width: double.infinity,
                         height: size.height * 0.07,
-                        action: () {
-                          Navigator.of(context).pushNamed('login_with_phone');
-                        },
-                        text: Text("Número de teléfono",
+                        text: Text("Correo electrónico",
                             style: buttonTextDarkStyle),
                       ),
                       SizedBox(

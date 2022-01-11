@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:mining_solutions/providers/verification_code_info.dart';
 import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/button_model.dart';
-import 'package:mining_solutions/widgets/input_model.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+import 'package:provider/provider.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+
+class EnterVerificationCode extends StatefulWidget {
+  EnterVerificationCode({
+    Key? key,
+  });
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _EnterVerificationCodeState createState() => _EnterVerificationCodeState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _EnterVerificationCodeState extends State<EnterVerificationCode> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final phoneOTP = Provider.of<VerificationCodeInfo>(context);
+    TextEditingController otpController = TextEditingController();
+    String currentText = "";
 
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
@@ -74,36 +81,54 @@ class _LoginPageState extends State<LoginPage> {
                     height: 30,
                   ),
                   Text(
-                    "Email",
+                    "Ingresa el código de verificación",
                     style: subtitleLoginTextStyle,
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Input(
-                    keyboardType: TextInputType.emailAddress,
+                  Text(
+                    "Enviado a ${phoneOTP.countryCode}${phoneOTP.phone}",
+                    style: subtitleLoginTextStyle,
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Text(
-                    "Contraseña",
-                    style: subtitleLoginTextStyle,
+                  PinCodeTextField(
+                    keyboardType: TextInputType.number,
+                    textStyle: TextStyle(color: Colors.black),
+                    length: 6,
+                    obscureText: false,
+                    animationType: AnimationType.fade,
+                    pinTheme: PinTheme(
+                      borderWidth: 0,
+                      selectedColor: Colors.white,
+                      activeColor: Colors.white,
+                      activeFillColor: Colors.white,
+                      inactiveFillColor: Colors.white,
+                      inactiveColor: Colors.grey,
+                      shape: PinCodeFieldShape.box,
+                      selectedFillColor: Colors.white,
+                      errorBorderColor: Colors.grey,
+                      borderRadius: BorderRadius.circular(5),
+                      fieldHeight: 60,
+                      fieldWidth: 50,
+                    ),
+                    animationDuration: const Duration(milliseconds: 200),
+                    enableActiveFill: true,
+                    controller: otpController,
+                    onCompleted: (value) {
+                      debugPrint("Completed");
+                      // TODO Mandar a llamar el WebService de verifcación del código
+                    },
+                    onChanged: (value) {
+                      debugPrint(value);
+                      setState(() {
+                        currentText = value;
+                      });
+                    },
+                    beforeTextPaste: (text) {
+                      return true;
+                    },
+                    appContext: context,
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  PasswordField(),
-                  SizedBox(height: 20),
-                  Container(
-                      alignment: Alignment.topRight,
-                      child: InkWell(
-                        onTap: () async {},
-                        child: Text(
-                          "¿Olvidaste tu contraseña?",
-                          style: passwordLoginTextStyle,
-                        ),
-                      )),
                   SizedBox(
                     height: 20,
                   ),
@@ -111,9 +136,10 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Center(
                         child: Button(
+                          // TODO Desabilitar botón
                           color: Color(0xFF259793),
                           text: Text(
-                            "Iniciar sesión",
+                            "Verificar",
                             style: buttonTextStyle,
                           ),
                           width: double.infinity,
@@ -126,19 +152,20 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text("o inicia via"),
+                      Text("¿No lo recibiste?"),
                       SizedBox(
                         height: 20,
                       ),
                       Button(
+                        action: () {
+                          //TODO Reenviar código
+                          //resend = true y notificar en la misma pantalla que el código se envió de nuevo
+                        },
                         color: Color(0xFFD8F6F0),
                         width: double.infinity,
                         height: size.height * 0.07,
-                        action: () {
-                          Navigator.of(context).pushNamed('login_with_phone');
-                        },
-                        text: Text("Número de teléfono",
-                            style: buttonTextDarkStyle),
+                        text:
+                            Text("Reenviar código", style: buttonTextDarkStyle),
                       ),
                       SizedBox(
                         height: size.height * 0.1,
