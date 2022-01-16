@@ -192,3 +192,42 @@ class OtpInput extends StatelessWidget {
     );
   }
 }
+
+class SearchInput extends StatelessWidget {
+  final Color? color;
+  final Icon? icon;
+  final String? label;
+  final String? hintText;
+  final TextInputType? keyboardType;
+
+  const SearchInput({
+    Key? key,
+    this.color,
+    this.icon,
+    this.label,
+    this.hintText,
+    this.keyboardType,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+        keyboardType: keyboardType,
+        style: bodyTextStyle,
+        autocorrect: false,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.grey[200],
+          hintText: hintText,
+          suffixIcon: icon == null ? null : icon,
+          labelText: label,
+          labelStyle: TextStyle(color: Colors.black),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            // width: 0.0 produces a thin "hairline" border
+            borderSide: const BorderSide(color: Colors.white),
+          ),
+          border: const OutlineInputBorder(),
+        ));
+  }
+}

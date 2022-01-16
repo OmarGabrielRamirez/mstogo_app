@@ -4,7 +4,9 @@ import 'package:mining_solutions/screens/demos/buttons_demo_page.dart';
 import 'package:mining_solutions/screens/login_page.dart';
 import 'package:mining_solutions/screens/demos/textfields_demo_page.dart';
 
+import 'providers/directions_provider.dart';
 import 'providers/verification_code_info.dart';
+import 'screens/demos/maps_demo.dart';
 import 'screens/enter_verification_code_page.dart';
 import 'screens/home_page.dart';
 import 'screens/login_with_phone.dart';
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => VerificationCodeInfo()),
+        ChangeNotifierProvider(create: (_) => DirectionProvider()),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -33,7 +36,8 @@ class MyApp extends StatelessWidget {
           "home": (context) => HomePage(),
           "second": (context) => SecondPage(),
           "login_with_phone": (context) => LoginWithPhone(),
-          "enter_verification_code": (context) => EnterVerificationCode()
+          "enter_verification_code": (context) => EnterVerificationCode(),
+          "demo_maps": (context) => DemoMaps(),
         },
       ),
     );

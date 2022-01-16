@@ -68,13 +68,16 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
                     height: 10,
                   ),
                   Container(
-                      height: 42.0,
-                      width: 109.0,
+                      height: 35.0,
+                      width: 180.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                        image: AssetImage('assets/logo.png'),
+                        image: AssetImage('assets/hubmine-logo.png'),
                         fit: BoxFit.fill,
                       ))),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Text(
                     "Inicia Sesión",
                     style: loginTextStyle,

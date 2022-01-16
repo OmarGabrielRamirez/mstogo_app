@@ -55,3 +55,16 @@ TextStyle get subtitleLoginTextStyle {
 TextStyle get passwordLoginTextStyle {
   return GoogleFonts.inter(fontSize: 14, color: primaryClr);
 }
+
+// Home
+TextStyle get subHeadingTextStyle {
+  return GoogleFonts.inter(
+      fontWeight: FontWeight.w600, fontSize: 18, color: Color(0xFF6C6969));
+}
+
+TextStyle get titlesHomeTextStyle {
+  return GoogleFonts.inter(
+      fontSize: 21.0,
+      fontWeight: FontWeight.w600,
+      color: Get.isDarkMode ? Colors.white : Colors.black);
+}
