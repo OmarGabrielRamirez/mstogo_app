@@ -7,39 +7,49 @@ import 'package:provider/provider.dart';
 class Input extends StatelessWidget {
   final Color? color;
   final Icon? icon;
+  final Icon? prefixIcon;
   final String? label;
   final String? hintText;
   final TextInputType? keyboardType;
+  final TextEditingController? controller;
 
   const Input({
     Key? key,
     this.color,
     this.icon,
+    this.prefixIcon,
     this.label,
     this.hintText,
     this.keyboardType,
+    this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        controller: controller,
         keyboardType: keyboardType,
         style: bodyTextStyle,
         autocorrect: false,
         decoration: InputDecoration(
-            hintText: hintText,
-            suffixIcon: icon == null ? null : icon,
-            labelText: label,
-            labelStyle: TextStyle(color: Colors.black),
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0)))));
+          label: Text("${label}", style: inputLabelTextStyle),
+          enabledBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: BorderSide(color: Colors.black26),
+          ),
+          focusedBorder: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(10.0),
+            borderSide: BorderSide(color: secondaryClr),
+          ),
+        ));
   }
 }
 //icon == null ? null : icon
 
 class PasswordField extends StatefulWidget {
+  final TextEditingController? controller;
+  const PasswordField({Key? key, this.controller}) : super(key: key);
+
   @override
   State<PasswordField> createState() => _PasswordFieldState();
 }
@@ -63,12 +73,18 @@ class _PasswordFieldState extends State<PasswordField> {
     return TextFormField(
       obscureText: _obscureText,
       style: bodyTextStyle,
+      controller: this.widget.controller,
       autocorrect: false,
       decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+        label: Text("Contraseña", style: inputLabelTextStyle),
+        enabledBorder: new OutlineInputBorder(
+          borderRadius: new BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: Colors.black26),
+        ),
+        focusedBorder: new OutlineInputBorder(
+          borderRadius: new BorderRadius.circular(10.0),
+          borderSide: BorderSide(color: secondaryClr),
+        ),
         suffixIcon: GestureDetector(
           onTap: () {
             _toggle();
@@ -155,6 +171,7 @@ class _CountryFieldState extends State<CountryField> {
             prefixIcon: countryDropDown,
             labelStyle: TextStyle(color: Colors.black),
             focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: secondaryClr, width: 1.0),
                 borderRadius: BorderRadius.all(Radius.circular(10.0))),
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10.0)))));
@@ -231,3 +248,55 @@ class SearchInput extends StatelessWidget {
         ));
   }
 }
+
+/* class DropdownInput<T> extends StatelessWidget {
+  final String hintText;
+  final List<T> options;
+  final T? value;
+  final String Function(T)? getLabel;
+  final void Function(T?)? onChanged;
+
+
+  const DropdownInput({
+    this.hintText = 'Please select an Option',
+    this.options = const [],
+    this.getLabel,
+    this.value,
+    this.onChanged,
+  });
+
+
+  
+
+
+  @override
+  Widget build(BuildContext context) {
+    return FormField<T>(
+      builder: (FormFieldState<T> state) {
+        return InputDecorator(
+          decoration: InputDecoration(
+            contentPadding:
+                EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+            labelText: hintText,
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+          ),
+          isEmpty: value == null || value == '',
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<T>(
+              value: value!= null ? value,
+              isDense: true,
+              onChanged: onChanged,
+              items: options.map((T value) {
+                return DropdownMenuItem<T>(
+                  value: value,
+                  child: Text(getLabel!(value)),
+                );
+              }).toList(),
+            ),
+          ),
+        );
+      },
+    );
+  }
+} */

@@ -8,6 +8,7 @@ const Color lightGreyClr = Color(0xFFEAEAEA);
 const Color yellowClr = Color(0xFFFFA901);
 const Color white = Colors.white;
 const Color primaryClr = Color(0xFF259793);
+const Color secondaryClr = Color(0xFF0db1ac);
 Color? darkHeaderClr = Colors.grey[800];
 
 class Themes {
@@ -67,4 +68,8 @@ TextStyle get titlesHomeTextStyle {
       fontSize: 21.0,
       fontWeight: FontWeight.w600,
       color: Get.isDarkMode ? Colors.white : Colors.black);
+}
+
+TextStyle get inputLabelTextStyle {
+  return GoogleFonts.inter(fontSize: 15.0, color: Colors.grey);
 }

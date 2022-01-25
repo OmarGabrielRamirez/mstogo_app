@@ -1,8 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:mining_solutions/screens/home_page.dart';
 import 'package:mining_solutions/theme.dart';
+import 'package:mining_solutions/widgets/alert_dialog.dart';
 import 'package:mining_solutions/widgets/button_model.dart';
 import 'package:mining_solutions/widgets/input_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:http/http.dart' as http;
+
+import 'registers_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,6 +20,70 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  bool _isLoading = false;
+
+  signIn(String email, String password) async {
+    print(email);
+    print(password);
+    //final SharedPreferences prefs = await _prefs;
+    var url = Uri.parse("http://awsms.syncronik.com/api/auth/login/");
+    Map body = {"email": email, "password": password};
+    var jsonResponse;
+    var res = await http.post(url, body: body);
+
+    print(res.statusCode);
+
+    if (res.statusCode == 200) {
+      jsonResponse = json.decode(res.body);
+      print("Status code ${res.statusCode}");
+      print("Response JSON ${res.body}");
+
+      if (jsonResponse != Null) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        // prefs.setInt("user_id", jsonResponse['id']);
+        // prefs.setString("token", jsonResponse['token']);
+        // prefs.setString("email", jsonResponse['email']);
+
+        // userInfo.uid = jsonResponse['id'];
+        // userInfo.firstName = jsonResponse['first_name'];
+        // userInfo.lastName = jsonResponse['last_name'];
+        // userInfo.email = jsonResponse['email'];
+        // userInfo.company = jsonResponse['company'];
+        // userInfo.address = jsonResponse['address'];
+        // userInfo.phone = jsonResponse['phone'];
+
+        // String urlPhoto =
+        //     "http://rotary.syncronik.com/api/v1/profile-pic/${userInfo.uid}";
+        // var res_photo = await http.get(urlPhoto);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+            (Route<dynamic> route) => false);
+        // try {
+        //   //var jsonResponsePicture = json.decode(res_photo.body);
+        //   //userInfo.urlPicture = jsonResponsePicture['picture'];
+        //   print("Picture User info: ${userInfo.urlPicture}");
+
+        // } catch (e) {
+        //   Navigator.of(context).pushNamed('/wait');
+        // }
+      }
+    } else if (res.statusCode == 401) {
+      setState(() {
+        _isLoading = false;
+      });
+      print("No existe el usuario");
+      showAlertDialog("Email o contraseña incorrectos", context);
+    } else if (res.statusCode == 500) {
+      print("Error del servidor");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -26,7 +98,12 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Container(
                   child: InkWell(
-                onTap: () async {},
+                onTap: () async {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                    return RegisterPage();
+                  }), (route) => false);
+                },
                 child: Text(
                   "¿No tienes una cuenta? Regístrate",
                   style: passwordLoginTextStyle,
@@ -76,27 +153,15 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 30,
                   ),
-                  Text(
-                    "Email",
-                    style: subtitleLoginTextStyle,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
                   Input(
+                    controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
+                    label: "Email",
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
-                  Text(
-                    "Contraseña",
-                    style: subtitleLoginTextStyle,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  PasswordField(),
+                  PasswordField(controller: _passwordController),
                   SizedBox(height: 20),
                   Container(
                       alignment: Alignment.topRight,
@@ -122,7 +187,13 @@ class _LoginPageState extends State<LoginPage> {
                           width: double.infinity,
                           height: size.height * 0.07,
                           action: () {
-                            Navigator.of(context).pushNamed('home');
+                            signIn(_emailController.text,
+                                _passwordController.text);
+                            // Navigator.of(context).pushAndRemoveUntil(
+                            //     MaterialPageRoute(
+                            //         builder: (BuildContext context) {
+                            //   return HomePage();
+                            // }), (route) => false);
                           },
                         ),
                       ),

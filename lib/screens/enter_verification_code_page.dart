@@ -33,7 +33,9 @@ class _EnterVerificationCodeState extends State<EnterVerificationCode> {
             children: [
               Container(
                   child: InkWell(
-                onTap: () async {},
+                onTap: () async {
+                  Navigator.of(context).pushReplacementNamed("register");
+                },
                 child: Text(
                   "¿No tienes una cuenta? Regístrate",
                   style: passwordLoginTextStyle,

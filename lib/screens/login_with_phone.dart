@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mining_solutions/providers/verification_code_info.dart';
+import 'package:mining_solutions/screens/registers_page.dart';
 import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/button_model.dart';
 import 'package:mining_solutions/widgets/input_model.dart';
@@ -39,7 +40,12 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
             children: [
               Container(
                   child: InkWell(
-                onTap: () async {},
+                onTap: () async {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (BuildContext context) {
+                    return RegisterPage();
+                  }), (route) => false);
+                },
                 child: Text(
                   "¿No tienes una cuenta? Regístrate",
                   style: passwordLoginTextStyle,
