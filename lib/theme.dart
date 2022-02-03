@@ -9,6 +9,7 @@ const Color yellowClr = Color(0xFFFFA901);
 const Color white = Colors.white;
 const Color primaryClr = Color(0xFF259793);
 const Color secondaryClr = Color(0xFF0db1ac);
+const Color primaryLightClr = Color(0xFFD8F6F0);
 Color? darkHeaderClr = Colors.grey[800];
 
 class Themes {
@@ -65,7 +66,6 @@ TextStyle get subHeadingTextStyle {
 
 TextStyle get titlesHomeTextStyle {
   return GoogleFonts.inter(
-      fontSize: 21.0,
       fontWeight: FontWeight.w600,
       color: Get.isDarkMode ? Colors.white : Colors.black);
 }

@@ -229,23 +229,25 @@ class SearchInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        keyboardType: keyboardType,
-        style: bodyTextStyle,
-        autocorrect: false,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.grey[200],
-          hintText: hintText,
-          suffixIcon: icon == null ? null : icon,
-          labelText: label,
-          labelStyle: TextStyle(color: Colors.black),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: new BorderRadius.circular(10.0),
-            // width: 0.0 produces a thin "hairline" border
-            borderSide: const BorderSide(color: Colors.white),
-          ),
-          border: const OutlineInputBorder(),
-        ));
+      keyboardType: keyboardType,
+      style: bodyTextStyle,
+      autocorrect: false,
+      autofocus: false,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.grey[200],
+        hintText: hintText,
+        suffixIcon: icon == null ? null : icon,
+        labelText: label,
+        labelStyle: TextStyle(color: Colors.black),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: new BorderRadius.circular(10.0),
+          // width: 0.0 produces a thin "hairline" border
+          borderSide: const BorderSide(color: Colors.white),
+        ),
+        border: const OutlineInputBorder(),
+      ),
+    );
   }
 }
 

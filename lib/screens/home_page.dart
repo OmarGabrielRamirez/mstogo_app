@@ -7,8 +7,12 @@ import 'package:mining_solutions/screens/login_page.dart';
 import 'package:mining_solutions/screens/orders_page.dart';
 import 'package:mining_solutions/screens/profile_page.dart';
 import 'package:mining_solutions/theme.dart';
+import 'package:mining_solutions/widgets/category.dart';
 import 'package:mining_solutions/widgets/input_model.dart';
-
+import 'package:provider/provider.dart';
+import '../providers/location_provider.dart';
+import '../services/location_services.dart';
+import 'current_location_page.dart';
 import 'demos/buttons_demo_page.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -146,7 +150,7 @@ class _HomePageState extends State<HomePage> {
                   iconSize: 24,
                   padding: padding,
                   icon: LineIcons.user,
-                  leading: CircleAvatar(
+                  leading: const CircleAvatar(
                     radius: 12,
                     backgroundImage: NetworkImage(
                       'https://sooxt98.space/content/images/size/w100/2019/01/profile.png',
@@ -185,7 +189,7 @@ class HomeContent extends StatelessWidget {
     ];
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
-    print(_height);
+
     return SafeArea(
         bottom: false,
         child: SingleChildScrollView(
@@ -200,17 +204,18 @@ class HomeContent extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          height: 25.0,
-                          width: 130.0,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
+                        height: 25.0,
+                        width: 130.0,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
                             image: AssetImage('assets/hubmine-logo.png'),
                             fit: BoxFit.fill,
-                          ))),
+                          ),
+                        ),
+                      ),
                       GestureDetector(
                         onTap: () {
                           print("Ver notificaciones");
-                          //TODO Implementar la sección de notificaciones
                         },
                         child: Container(
                             height: 40,
@@ -220,12 +225,13 @@ class HomeContent extends StatelessWidget {
                                 width: 0.3,
                                 color: Colors.black26,
                               ),
-                              borderRadius: BorderRadius.all(Radius.circular(
+                              borderRadius: const BorderRadius.all(
+                                  Radius.circular(
                                       10.0) //                 <--- border radius here
                                   ),
                             ),
-                            child:
-                                Icon(Icons.notifications, color: primaryClr)),
+                            child: const Icon(Icons.notifications,
+                                color: primaryClr)),
                       ),
                     ],
                   ),
@@ -237,7 +243,7 @@ class HomeContent extends StatelessWidget {
                   Expanded(
                       child: Padding(
                     padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                    child: Container(
+                    child: SizedBox(
                       height: _height * 0.11,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 16.0, left: 16.0),
@@ -246,24 +252,114 @@ class HomeContent extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Ubicación", style: subHeadingTextStyle),
-                              SizedBox(height: 7),
+                              const SizedBox(height: 7),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.of(context).pushNamed('demo_maps');
-                                  // TODO Abrir pantalla de mapas
-                                  print("Obteniendo ubicación");
+                                  showModalBottomSheet<void>(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(30),
+                                      topRight: Radius.circular(30),
+                                    )),
+                                    builder: (BuildContext context) {
+                                      return SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height -
+                                                250,
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.only(
+                                                  top: 20, bottom: 10),
+                                              child: Text(
+                                                'Agrega o escoge una dirección',
+                                                style: titlesHomeTextStyle,
+                                                textScaleFactor: 1.2,
+                                              ),
+                                            ),
+                                            const Divider(
+                                                color: Colors.black45,
+                                                thickness: 0.0,
+                                                indent: 30.0,
+                                                endIndent: 30.0),
+                                            Container(
+                                              padding: const EdgeInsets.only(
+                                                  left: 20, right: 20),
+                                              child: const SearchInput(
+                                                hintText:
+                                                    "Ingresa una dirección",
+                                                icon: Icon(Icons.location_on),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(builder:
+                                                      (BuildContext context) {
+                                                    return CurrentLocationPage();
+                                                  }),
+                                                );
+                                              },
+                                              child: Container(
+                                                padding: const EdgeInsets.only(
+                                                  left: 20,
+                                                  right: 20,
+                                                  top: 20,
+                                                  bottom: 10,
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    const Icon(Icons
+                                                        .location_on_outlined),
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 20),
+                                                      child: Text(
+                                                        'Ubicación Actual',
+                                                        style:
+                                                            titlesHomeTextStyle,
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            const Divider(
+                                                color: Colors.black45,
+                                                thickness: 0.0,
+                                                indent: 30.0,
+                                                endIndent: 30.0),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                  // Navigator.of(context).pushNamed('demo_maps');
+                                  // print("Obteniendo ubicación");
                                 },
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.location_on, color: Colors.red),
-                                    SizedBox(width: 6),
-                                    Text("San Pedro Garza",
-                                        style: titlesHomeTextStyle),
-                                    SizedBox(width: 3),
-                                    Icon(
-                                      Icons.arrow_drop_down_outlined,
-                                    ),
-                                  ],
+                                child: SizedBox(
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.location_on,
+                                          color: Colors.red),
+                                      const SizedBox(width: 6),
+                                      Consumer<LocationProvider>(builder:
+                                          (context, locationProvider, child) {
+                                        return Text(
+                                          locationProvider.nameStreet,
+                                          style: titlesHomeTextStyle,
+                                          textScaleFactor: 0.97,
+                                        );
+                                      }),
+                                      const SizedBox(width: 3),
+                                      const Icon(
+                                        Icons.arrow_drop_down_outlined,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ]),
@@ -339,7 +435,7 @@ class HomeContent extends StatelessWidget {
                   leading: Container(
                     height: height * 0.09,
                     width: width / 5,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.rectangle,
                       image: DecorationImage(
                           image: NetworkImage(
@@ -378,82 +474,30 @@ class HomeContent extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: height * 0.09,
-                        width: width / 5,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://images.unsplash.com/photo-1590884056072-0248bac7797e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
-                              fit: BoxFit.fill),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text("Cemento")
-                    ],
+                children: const [
+                  Category(
+                    assetPath:
+                        'https://images.unsplash.com/photo-1590884056072-0248bac7797e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+                    title: 'Cemento',
+                    idCategory: 1,
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        height: height * 0.09,
-                        width: width / 5.5,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://images.unsplash.com/photo-1628229896881-b0ef1ad5e777?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80'),
-                              fit: BoxFit.fill),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text("Concreto")
-                    ],
+                  Category(
+                    assetPath:
+                        'https://images.unsplash.com/photo-1628229896881-b0ef1ad5e777?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80',
+                    title: 'Concreto',
+                    idCategory: 2,
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        height: height * 0.09,
-                        width: width / 5.5,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://images.unsplash.com/photo-1601727096707-d035697f4d8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'),
-                              fit: BoxFit.fill),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text("Agregados")
-                    ],
+                  Category(
+                    assetPath:
+                        'https://images.unsplash.com/photo-1601727096707-d035697f4d8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
+                    title: 'Agregados',
+                    idCategory: 3,
                   ),
-                  Column(
-                    children: [
-                      Container(
-                        height: height * 0.09,
-                        width: width / 5.5,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://images.unsplash.com/photo-1601727096707-d035697f4d8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80'),
-                              fit: BoxFit.fill),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text("Agregados")
-                    ],
+                  Category(
+                    assetPath:
+                        'https://images.unsplash.com/photo-1601727096707-d035697f4d8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
+                    title: 'Agregados',
+                    idCategory: 4,
                   ),
                 ],
               ),

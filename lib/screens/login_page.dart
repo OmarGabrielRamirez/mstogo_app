@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mining_solutions/screens/home_page.dart';
+import 'package:mining_solutions/services/auth_services.dart';
 import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/alert_dialog.dart';
 import 'package:mining_solutions/widgets/button_model.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:http/http.dart' as http;
 
+import '../services/location_services.dart';
 import 'registers_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +22,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    super.initState();
+    ServiceLocation.getCurrentLocation(context);
+  }
+
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
@@ -172,23 +180,30 @@ class _LoginPageState extends State<LoginPage> {
                           style: passwordLoginTextStyle,
                         ),
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Column(
                     children: [
                       Center(
                         child: Button(
-                          color: Color(0xFF259793),
+                          color: const Color(0xFF259793),
                           text: Text(
                             "Iniciar sesión",
                             style: buttonTextStyle,
                           ),
                           width: double.infinity,
                           height: size.height * 0.07,
-                          action: () {
-                            signIn(_emailController.text,
-                                _passwordController.text);
+                          action: () async {
+                            if (await signInDummy()) {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          HomePage()),
+                                  (Route<dynamic> route) => false);
+                            }
+                            // signIn(_emailController.text,
+                            //     _passwordController.text);
                             // Navigator.of(context).pushAndRemoveUntil(
                             //     MaterialPageRoute(
                             //         builder: (BuildContext context) {
