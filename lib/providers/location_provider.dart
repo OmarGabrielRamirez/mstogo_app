@@ -1,33 +1,41 @@
 import 'package:flutter/widgets.dart';
 
 class LocationProvider extends ChangeNotifier {
-  String _latitude = '',
-      _longitude = '',
-      _streetName = '',
+  double _latitude = 0.0, _longitude = 0.0;
+  String _streetName = '',
       _colName = '',
       _postalCode = '',
       _city = '',
       _edo = '',
       _country = '';
 
-  set currentLatitude(String lt) {
+  void setCurrentLatitude(double lt) {
     _latitude = lt;
+    print(lt);
     notifyListeners();
   }
 
-  set currentLongitude(String lt) {
+  void setCurrentLongitude(double lt) {
     _longitude = lt;
+    print(lt);
     notifyListeners();
   }
 
   void setStreetName(String n) {
     _streetName = '';
     _streetName = n;
-    print('SET NEW NAME STREET');
     notifyListeners();
   }
 
   String get nameStreet {
     return _streetName;
+  }
+
+  double get getCurrentLatituded {
+    return _latitude;
+  }
+
+  double get getCurrentLongitude {
+    return _longitude;
   }
 }

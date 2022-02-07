@@ -16,26 +16,23 @@ class ServiceLocation {
         await _locationService.requestService();
         Position _position = await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high);
-///
         List<Placemark> _placemark = await GeocodingPlatform.instance
             .placemarkFromCoordinates(
                 _position.latitude.toDouble(), _position.longitude.toDouble());
         Provider.of<LocationProvider>(context, listen: false).setStreetName(
           _placemark[0].street.toString(),
         );
-        developer.log(
-            ' ---- > LATITUD: ' + _position.latitude.toDouble().toString());
-        developer.log(
-            ' ---- > LONGITUD: ' + _position.latitude.toDouble().toString());
-        developer.log(' ---- > CALLE: ' + _placemark[0].street.toString());
-        developer
-            .log(' ---- > COLONIA: ' + _placemark[0].subLocality.toString());
-        developer.log(' ---- > CP: ' + _placemark[0].postalCode.toString());
-        developer.log(' ---- > CIUDAD: ' + _placemark[0].locality.toString());
-        developer.log(
-            ' ---- > ESTADO: ' + _placemark[0].administrativeArea.toString());
-        developer
-            .log(' ---- > PAIS: ' + _placemark[0].isoCountryCode.toString());
+
+        Provider.of<LocationProvider>(context, listen: false)
+            .setCurrentLatitude(
+          _position.latitude.toDouble(),
+        );
+
+        Provider.of<LocationProvider>(context, listen: false)
+            .setCurrentLongitude(
+          _position.longitude.toDouble(),
+        );
+
         break;
       case PermissionStatus.denied:
       case PermissionStatus.permanentlyDenied:
