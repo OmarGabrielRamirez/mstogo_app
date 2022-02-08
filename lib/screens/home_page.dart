@@ -182,10 +182,9 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> imageList = [
-      "https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/piedra-caliza.jpg",
-      'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/hubmine-slider-retroexcavadora-2.jpeg',
-      'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/hubmine-slider-mina.jpeg',
-      'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/hubmine-concreto.jpeg'
+      "https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/hubmine-slider-todo-para-construccion.jpg",
+      'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/hubmine-slider-concreto.jpg',
+      'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/hubmine-slider-rastreo.jpg'
     ];
     final _height = MediaQuery.of(context).size.height;
     final _width = MediaQuery.of(context).size.width;
@@ -204,12 +203,12 @@ class HomeContent extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        height: 25.0,
-                        width: 130.0,
+                        height: 30.0,
+                        width: 140.0,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/hubmine-logo.png'),
-                            fit: BoxFit.fill,
+                            image: AssetImage('assets/Logo-Hubmine.png'),
+                            fit: BoxFit.fitWidth,
                           ),
                         ),
                       ),
@@ -349,7 +348,9 @@ class HomeContent extends StatelessWidget {
                                       Consumer<LocationProvider>(builder:
                                           (context, locationProvider, child) {
                                         return Text(
-                                          locationProvider.nameStreet,
+                                          locationProvider.nameStreet != ""
+                                              ? locationProvider.nameStreet
+                                              : "Villas de San Jerónimo #203",
                                           style: titlesHomeTextStyle,
                                           textScaleFactor: 0.97,
                                         );
@@ -400,53 +401,76 @@ class HomeContent extends StatelessWidget {
         padding: const EdgeInsets.only(left: 30.0, top: 20.0, right: 30.0),
         child: Column(
           children: [
-            Row(children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Text("Recomendados para ti", style: subHeadingTextStyle),
+              Text("Ver más", style: buttonTextDarkStyle),
             ]),
             SizedBox(height: 10),
             Container(
               width: width,
-              height: height * 0.15,
-              child: Card(
-                  child: Column(children: [
-                ListTile(
-                  leading: Container(
-                    height: height * 0.09,
-                    width: width / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              'https://images.unsplash.com/photo-1590884056072-0248bac7797e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
-                          fit: BoxFit.fill),
+              height: height * 0.5,
+              child: GridView.count(
+                crossAxisCount: 2,
+                padding: const EdgeInsets.only(left: 0.0, top: 10),
+                childAspectRatio: 8.0 / 9.0,
+                // TODO: Build a grid of cards (102)
+                children: <Widget>[
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        AspectRatio(
+                          aspectRatio: 18.0 / 11.0,
+                          child: Image.asset(
+                            'assets/grava.png',
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(15.0, 5.0, 1.0, 1.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('Grava', style: subHeadingTextStyle),
+                              const SizedBox(height: 8.0),
+                              Text("150 pesos por tonelada"),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  title: Text('The  is having:'),
-                  subtitle: Text('Votes.'),
-                ),
-              ])),
-            ),
-            Container(
-              width: width,
-              height: height * 0.15,
-              child: Card(
-                  child: Column(children: [
-                ListTile(
-                  leading: Container(
-                    height: height * 0.09,
-                    width: width / 5,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              'https://images.unsplash.com/photo-1590884056072-0248bac7797e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
-                          fit: BoxFit.fill),
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        AspectRatio(
+                          aspectRatio: 18.0 / 11.0,
+                          child: Image.asset(
+                            'assets/piedra-caliza.png',
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(15.0, 5.0, 1.0, 1.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('Piedra caliza', style: subHeadingTextStyle),
+                              const SizedBox(height: 8.0),
+                              Text("150 pesos por tonelada"),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  title: Text('The  is having:'),
-                  subtitle: Text('Votes.'),
-                ),
-              ])),
+                  )
+                ],
+              ),
             ),
           ],
         ),
@@ -477,26 +501,26 @@ class HomeContent extends StatelessWidget {
                 children: const [
                   Category(
                     assetPath:
-                        'https://images.unsplash.com/photo-1590884056072-0248bac7797e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+                        'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/categories/cemento-icon.png',
                     title: 'Cemento',
                     idCategory: 1,
                   ),
                   Category(
                     assetPath:
-                        'https://images.unsplash.com/photo-1628229896881-b0ef1ad5e777?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80',
+                        'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/categories/concreto-mix-icon.png',
                     title: 'Concreto',
                     idCategory: 2,
                   ),
                   Category(
                     assetPath:
-                        'https://images.unsplash.com/photo-1601727096707-d035697f4d8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
+                        'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/categories/agregados-icon.png',
                     title: 'Agregados',
                     idCategory: 3,
                   ),
                   Category(
                     assetPath:
-                        'https://images.unsplash.com/photo-1601727096707-d035697f4d8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80',
-                    title: 'Agregados',
+                        'https://syncronik.s3.us-east-2.amazonaws.com/Hubmine/categories/prefabricados-icon.png',
+                    title: 'Prefabricados',
                     idCategory: 4,
                   ),
                 ],

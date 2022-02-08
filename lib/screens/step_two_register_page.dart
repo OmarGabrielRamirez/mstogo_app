@@ -119,10 +119,10 @@ class _StepTwoRegisterPageState extends State<StepTwoRegisterPage> {
               Container(
                   child: InkWell(
                 onTap: () async {
-                  Navigator.of(context).pushNamed("register");
+                  Navigator.of(context).pushNamed("login");
                 },
                 child: Text(
-                  "¿No tienes una cuenta? Regístrate",
+                  "¿Estás de vuelta? Inicia sesión",
                   style: passwordLoginTextStyle,
                 ),
               )),
@@ -153,8 +153,8 @@ class _StepTwoRegisterPageState extends State<StepTwoRegisterPage> {
                       width: 180.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                        image: AssetImage('assets/hubmine-logo.png'),
-                        fit: BoxFit.fill,
+                        image: AssetImage('assets/Logo-Hubmine.png'),
+                        fit: BoxFit.fitWidth,
                       ))),
                   SizedBox(
                     height: 10,
@@ -164,7 +164,7 @@ class _StepTwoRegisterPageState extends State<StepTwoRegisterPage> {
                     style: loginTextStyle,
                   ),
                   Text(
-                    "Cuentanos sobre tu negocio y hagamos trato",
+                    "Cuéntanos sobre tu negocio y hagamos trato",
                     style: subtitleLoginTextStyle,
                   ),
                   SizedBox(

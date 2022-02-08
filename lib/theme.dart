@@ -73,3 +73,22 @@ TextStyle get titlesHomeTextStyle {
 TextStyle get inputLabelTextStyle {
   return GoogleFonts.inter(fontSize: 15.0, color: Colors.grey);
 }
+
+TextStyle get introTitleTextStyle {
+  return GoogleFonts.inter(
+      fontWeight: FontWeight.w600, fontSize: 23.0, color: Colors.white);
+}
+
+TextStyle get introParTextStyle {
+  return GoogleFonts.inter(
+      fontWeight: FontWeight.w500, fontSize: 22.0, color: Colors.white);
+}
+
+TextStyle get titleLogoTextStyle {
+  return GoogleFonts.inter(
+      fontWeight: FontWeight.w600, fontSize: 40.0, color: Colors.white);
+}
+
+TextStyle get loadingStyle {
+  return GoogleFonts.inter(fontSize: 15.0, color: Colors.white);
+}

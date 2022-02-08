@@ -66,8 +66,17 @@ dev_dependencies:
   location: ^4.2.0
   geolocator: ^8.0.5
   geocoding: ^2.0.2
+  dots_indicator: ^2.0.0
+  easy_splash_screen: ^1.0.3
+  flutter_launcher_icons:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon-hubmine.png" 
+  adaptive_icon_background: "assets/icon/icon-hubmine.png"
+
 
 # The following section is specific to Flutter.
 flutter:
@@ -82,6 +91,14 @@ flutter:
     - logo.png
     - hubmine-logo.png
     - check-mark-success.json
+    - rectangle-bg-intro-one.png
+    - Hubmine.png
+    - rectangle-bg-intro-two.png
+    - rectangle-bg-intro-three.png
+    - LogoSplash.png
+    - Logo-Hubmine.png
+    - grava.png
+    - piedra-caliza.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

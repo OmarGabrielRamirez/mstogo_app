@@ -68,8 +68,8 @@ class _EnterVerificationCodeState extends State<EnterVerificationCode> {
                       width: 180.0,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                        image: AssetImage('assets/hubmine-logo.png'),
-                        fit: BoxFit.fill,
+                        image: AssetImage('assets/Logo-Hubmine.png'),
+                        fit: BoxFit.fitWidth,
                       ))),
                   SizedBox(
                     height: 10,

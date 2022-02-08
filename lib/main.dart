@@ -11,11 +11,13 @@ import 'package:mining_solutions/widgets/checkReady.dart';
 import 'providers/directions_provider.dart';
 import 'providers/verification_code_info.dart';
 import 'screens/current_location_page.dart';
+import 'screens/demos/intro_screen.dart';
 import 'screens/demos/maps_demo.dart';
 import 'screens/enter_verification_code_page.dart';
 import 'screens/home_page.dart';
 import 'screens/login_with_phone.dart';
 import 'screens/registers_page.dart';
+import 'screens/splash_screen.dart';
 import 'screens/step_two_register_page.dart';
 import 'services/theme_services.dart';
 import 'theme.dart';
@@ -41,8 +43,10 @@ class MyApp extends StatelessWidget {
         darkTheme: Themes.dark,
         themeMode: ThemeService().theme,
         title: 'HubMine',
-        initialRoute: 'login',
+        initialRoute: 'splash',
         routes: {
+          "splash": (context) => SplashPage(),
+          "intro_screen": (context) => IntroScreen(),
           "login": (context) => LoginPage(),
           "register": (context) => RegisterPage(),
           "step-two-register": (context) => StepTwoRegisterPage(),
