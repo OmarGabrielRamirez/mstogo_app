@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mining_solutions/providers/location_provider.dart';
 import 'package:mining_solutions/providers/register_provider.dart';
 import 'package:mining_solutions/screens/demos/buttons_demo_page.dart';
@@ -10,8 +11,10 @@ import 'package:mining_solutions/widgets/checkReady.dart';
 
 import 'providers/directions_provider.dart';
 import 'providers/verification_code_info.dart';
-import 'screens/current_location_page.dart';
-import 'screens/demos/intro_screen.dart';
+import 'screens/intro/select_type_account.dart';
+import 'screens/locations/confirm_location_page.dart';
+import 'screens/locations/current_location_page.dart';
+import 'screens/intro/intro_screen.dart';
 import 'screens/demos/maps_demo.dart';
 import 'screens/enter_verification_code_page.dart';
 import 'screens/home_page.dart';
@@ -23,9 +26,12 @@ import 'services/theme_services.dart';
 import 'theme.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(
-      MyApp(),
-    );
+void main() async {
+  await GetStorage.init();
+  runApp(
+    MyApp(),
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -47,6 +53,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "splash": (context) => SplashPage(),
           "intro_screen": (context) => IntroScreen(),
+          "select_type_account": (context) => SelectTypeAccountPage(),
           "login": (context) => LoginPage(),
           "register": (context) => RegisterPage(),
           "step-two-register": (context) => StepTwoRegisterPage(),
@@ -56,9 +63,12 @@ class MyApp extends StatelessWidget {
           "enter_verification_code": (context) => EnterVerificationCode(),
           "demo_maps": (context) => DemoMaps(),
           'current_location_confirm': (context) => CurrentLocationPage(),
+          "confirm_location_page": (context) => ConfirmLocationPage(),
           "check-register": (context) => CheckReady()
         },
       ),
     );
   }
 }
+
+// TODO: Añadir validaciones de formularios (Campos requeridos)

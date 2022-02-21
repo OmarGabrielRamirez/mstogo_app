@@ -27,6 +27,8 @@ class Input extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        minLines: 1, //Normal textInputField will be displayed
+        maxLines: 5,
         controller: controller,
         keyboardType: keyboardType,
         style: bodyTextStyle,

@@ -7,6 +7,8 @@ import 'package:mining_solutions/widgets/input_model.dart';
 
 import 'package:provider/provider.dart';
 
+import 'intro/select_type_account.dart';
+
 class LoginWithPhone extends StatefulWidget {
   const LoginWithPhone({Key? key}) : super(key: key);
 
@@ -41,10 +43,8 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
               Container(
                   child: InkWell(
                 onTap: () async {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                    return RegisterPage();
-                  }), (route) => false);
+                  Navigator.of(context)
+                      .pushReplacementNamed("select_type_account");
                 },
                 child: Text(
                   "¿No tienes una cuenta? Regístrate",

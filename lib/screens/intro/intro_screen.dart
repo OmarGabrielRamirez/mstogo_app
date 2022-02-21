@@ -3,6 +3,7 @@ import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/button_model.dart';
 
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key}) : super(key: key);
@@ -93,7 +94,8 @@ class _IntroScreenState extends State<IntroScreen> {
                     children: [
                       Button(
                           action: () {
-                            Navigator.of(context).pushNamed('register');
+                            Navigator.of(context)
+                                .pushNamed('select_type_account');
                           },
                           color: Colors.white,
                           text: Text("Regístrate", style: buttonTextDarkStyle),

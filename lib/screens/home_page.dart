@@ -12,7 +12,7 @@ import 'package:mining_solutions/widgets/input_model.dart';
 import 'package:provider/provider.dart';
 import '../providers/location_provider.dart';
 import '../services/location_services.dart';
-import 'current_location_page.dart';
+import 'locations/current_location_page.dart';
 import 'demos/buttons_demo_page.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -347,12 +347,14 @@ class HomeContent extends StatelessWidget {
                                       const SizedBox(width: 6),
                                       Consumer<LocationProvider>(builder:
                                           (context, locationProvider, child) {
-                                        return Text(
-                                          locationProvider.nameStreet != ""
-                                              ? locationProvider.nameStreet
-                                              : "Villas de San Jerónimo #203",
-                                          style: titlesHomeTextStyle,
-                                          textScaleFactor: 0.97,
+                                        return Flexible(
+                                          child: Text(
+                                            locationProvider.nameStreet != ""
+                                                ? locationProvider.nameStreet
+                                                : "Villas de San Jerónimo #203",
+                                            style: titlesHomeTextStyle,
+                                            textScaleFactor: 0.97,
+                                          ),
                                         );
                                       }),
                                       const SizedBox(width: 3),

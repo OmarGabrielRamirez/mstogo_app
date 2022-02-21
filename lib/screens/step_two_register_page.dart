@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mining_solutions/providers/register_provider.dart';
 import 'package:mining_solutions/screens/home_page.dart';
@@ -29,6 +30,8 @@ class _StepTwoRegisterPageState extends State<StepTwoRegisterPage> {
 
   String? selectedValue;
 
+  bool? isTermsAgree = false;
+
   List<String> options = [
     "Concretera",
     "Constructora",
@@ -54,14 +57,16 @@ class _StepTwoRegisterPageState extends State<StepTwoRegisterPage> {
       "password": password,
       "business_name": businessName,
       "business_type": businessType,
-      "rfc": rfc
+      "rfc": rfc,
+      "user_type_id": "2"
     };
     var jsonResponse;
     var res = await http.post(url, body: body);
 
-    print(res.statusCode);
+    jsonResponse = json.decode(res.body);
+    print(jsonResponse);
 
-    if (res.statusCode == 200) {
+    if (res.statusCode == 201) {
       jsonResponse = json.decode(res.body);
       print("Status code ${res.statusCode}");
       print("Response JSON ${res.body}");
@@ -242,35 +247,98 @@ class _StepTwoRegisterPageState extends State<StepTwoRegisterPage> {
                       keyboardType: TextInputType.text,
                       label: "RFC (Opcional)"),
                   SizedBox(
-                    height: 15,
+                    height: 20,
+                  ),
+                  Wrap(
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              activeColor: primaryClr,
+                              checkColor: primaryLightClr,
+                              value: isTermsAgree,
+                              onChanged: (bool? value) {
+                                print(value);
+                                setState(() {
+                                  isTermsAgree = value;
+                                });
+                              },
+                            ),
+                            Expanded(
+                              child: RichText(
+                                text: TextSpan(
+                                  text: "* He leído y acepto los ",
+                                  style: bodyTermsStyle,
+                                  children: [
+                                    TextSpan(
+                                      text: "Términos y Condiciones de Uso ",
+                                      style: bodyTermsPrimaryStyle,
+                                      recognizer: new TapGestureRecognizer()
+                                        ..onTap = () => print(
+                                            'Abriendo página de términos y condiciones'),
+                                    ),
+                                    TextSpan(
+                                      text: "y la ",
+                                    ),
+                                    TextSpan(
+                                      text: "Política de Privacidad ",
+                                      style: bodyTermsPrimaryStyle,
+                                      recognizer: new TapGestureRecognizer()
+                                        ..onTap = () => print(
+                                            'Abriendo página de política de privacidad'),
+                                    ),
+                                    TextSpan(text: "de Hubmine")
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   Column(
                     children: [
                       Center(
-                        child: Button(
-                          color: Color(0xFF259793),
-                          text: Text(
-                            "Finalizar registro",
-                            style: buttonTextStyle,
-                          ),
-                          width: double.infinity,
-                          height: size.height * 0.07,
-                          action: () {
-                            registerInfo.businessName =
-                                _businessNameController.text;
-                            registerInfo.businessType = selectedValue as String;
-                            registerInfo.rfc = _rfcController.text;
-                            signUp(
-                                registerInfo.name,
-                                registerInfo.lastName,
-                                registerInfo.email,
-                                registerInfo.password,
-                                registerInfo.businessName,
-                                registerInfo.businessType,
-                                registerInfo.rfc);
-                          },
-                        ),
-                      ),
+                          child: isTermsAgree!
+                              ? Button(
+                                  color: Color(0xFF259793),
+                                  text: Text(
+                                    "Finalizar registro",
+                                    style: buttonTextStyle,
+                                  ),
+                                  width: double.infinity,
+                                  height: size.height * 0.07,
+                                  action: () {
+                                    registerInfo.businessName =
+                                        _businessNameController.text;
+                                    registerInfo.businessType =
+                                        selectedValue as String;
+                                    registerInfo.rfc = _rfcController.text;
+                                    signUp(
+                                        registerInfo.name,
+                                        registerInfo.lastName,
+                                        registerInfo.email,
+                                        registerInfo.password,
+                                        registerInfo.businessName,
+                                        registerInfo.businessType,
+                                        registerInfo.rfc);
+                                  },
+                                )
+                              : ButtonDisabled(
+                                  color: Color(0xFF259793),
+                                  text: Text(
+                                    "Finalizar registro",
+                                    style: buttonTextStyle,
+                                  ),
+                                  width: double.infinity,
+                                  height: size.height * 0.07,
+                                )),
                       SizedBox(
                         height: 20,
                       ),

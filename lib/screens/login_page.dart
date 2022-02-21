@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:http/http.dart' as http;
 
 import '../services/location_services.dart';
+import 'intro/select_type_account.dart';
 import 'registers_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -107,10 +108,8 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                   child: InkWell(
                 onTap: () async {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                    return RegisterPage();
-                  }), (route) => false);
+                  Navigator.of(context)
+                      .pushReplacementNamed("select_type_account");
                 },
                 child: Text(
                   "¿No tienes una cuenta? Regístrate",

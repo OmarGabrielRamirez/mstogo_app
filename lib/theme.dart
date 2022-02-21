@@ -36,13 +36,45 @@ TextStyle get bodyTextStyle {
   return GoogleFonts.inter(color: Get.isDarkMode ? Colors.white : Colors.black);
 }
 
+TextStyle get bodyTextBoldStyle {
+  return GoogleFonts.inter(
+      color: Get.isDarkMode ? Colors.white : Colors.black,
+      fontWeight: FontWeight.w600);
+}
+
+TextStyle get bodyTextBoldIntroStyle {
+  return GoogleFonts.inter(
+      color: Get.isDarkMode ? Colors.white : Colors.black,
+      fontWeight: FontWeight.w600,
+      fontSize: 16);
+}
+
+TextStyle get bodyTextPrimaryStyle {
+  return GoogleFonts.inter(color: primaryClr, fontWeight: FontWeight.w600);
+}
+
+TextStyle get bodyTermsStyle {
+  return GoogleFonts.inter(fontSize: 14.0, color: Colors.grey);
+}
+
+TextStyle get bodyTermsPrimaryStyle {
+  return GoogleFonts.inter(
+      fontSize: 14, color: primaryClr, fontWeight: FontWeight.w600);
+}
+
 TextStyle get buttonTextStyle {
-  return GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.w600);
+  return GoogleFonts.inter(
+      color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600);
+}
+
+TextStyle get buttonConfirmTextStyle {
+  return GoogleFonts.inter(
+      fontSize: 17, color: Colors.white, fontWeight: FontWeight.w600);
 }
 
 TextStyle get buttonTextDarkStyle {
   return GoogleFonts.inter(
-      color: Color(0xFF259793), fontWeight: FontWeight.w600);
+      fontSize: 16, color: Color(0xFF259793), fontWeight: FontWeight.w600);
 }
 
 TextStyle get loginTextStyle {
@@ -64,9 +96,24 @@ TextStyle get subHeadingTextStyle {
       fontWeight: FontWeight.w600, fontSize: 18, color: Color(0xFF6C6969));
 }
 
+TextStyle get subHeadingPrimaryTextStyle {
+  return GoogleFonts.inter(
+      fontWeight: FontWeight.w600, fontSize: 18, color: primaryClr);
+}
+
+TextStyle get subHeadingDirectionTextStyle {
+  return GoogleFonts.inter(
+      fontWeight: FontWeight.w600, fontSize: 18, color: Colors.black);
+}
+
+TextStyle get subDirectionTextStyle {
+  return GoogleFonts.inter(fontSize: 17, color: Color(0xFF6C6969));
+}
+
 TextStyle get titlesHomeTextStyle {
   return GoogleFonts.inter(
       fontWeight: FontWeight.w600,
+      fontSize: 16,
       color: Get.isDarkMode ? Colors.white : Colors.black);
 }
 

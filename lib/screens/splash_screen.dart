@@ -1,6 +1,6 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:mining_solutions/screens/demos/intro_screen.dart';
+import 'package:mining_solutions/screens/intro/intro_screen.dart';
 import 'package:mining_solutions/screens/login_page.dart';
 import 'package:mining_solutions/theme.dart';
 

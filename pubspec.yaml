@@ -99,6 +99,11 @@ flutter:
     - Logo-Hubmine.png
     - grava.png
     - piedra-caliza.png
+    - marker-hubmine.png
+    - icon-obra.png
+    - icon-casa.png
+    - icon-factory.png
+    - icon-corporativo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
