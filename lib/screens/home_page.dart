@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:badges/badges.dart';
+import 'package:mining_solutions/models/location_data.dart';
 import 'package:mining_solutions/screens/cart_page.dart';
 import 'package:mining_solutions/screens/login_page.dart';
 import 'package:mining_solutions/screens/orders_page.dart';
 import 'package:mining_solutions/screens/profile_page.dart';
+import 'package:mining_solutions/services/directions_services.dart';
 import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/category.dart';
 import 'package:mining_solutions/widgets/input_model.dart';
@@ -26,22 +28,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
-
-  final padding = EdgeInsets.symmetric(horizontal: 18, vertical: 12);
+  List<LocationData> _dataLocations = [];
+  final padding = const EdgeInsets.symmetric(horizontal: 18, vertical: 12);
   int badge = 0;
 
   List<Widget> pages = [
-    HomeContent(),
-    CartPage(),
-    OrdersPage(),
-    ProfilePage(),
+    const HomeContent(),
+    const CartPage(),
+    const OrdersPage(),
+    const ProfilePage(),
   ];
   double gap = 10;
 
   PageController controller = PageController();
 
+  _fetchDataDirections() async {
+    _dataLocations = await ServiceDirections.fetchDirectionsAll();
+    setState(() {});
+  }
+
   @override
   void initState() {
+    _fetchDataDirections();
     super.initState();
   }
 
@@ -49,9 +57,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size(0.0, 0.0),
+          preferredSize: const Size(0.0, 0.0),
           child: AppBar(
-            // Here we create one to set status bar color
             elevation: 0,
             backgroundColor: Colors
                 .white, // Set any color of status bar you want; or it defaults to your theme's primary color
@@ -67,30 +74,29 @@ class _HomePageState extends State<HomePage> {
         },
         controller: controller,
         itemBuilder: (context, position) {
-          print(position);
           return Container(child: pages[position]);
         },
         itemCount: 4,
       ),
       bottomNavigationBar: SafeArea(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(100)),
+            borderRadius: const BorderRadius.all(Radius.circular(100)),
             boxShadow: [
               BoxShadow(
                 spreadRadius: -10,
                 blurRadius: 60,
                 color: Colors.black.withOpacity(.4),
-                offset: Offset(0, 25),
+                offset: const Offset(0, 25),
               )
             ],
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3),
             child: GNav(
-              duration: Duration(milliseconds: 140),
+              duration: const Duration(milliseconds: 140),
               tabs: [
                 GButton(
                   gap: gap,
@@ -174,10 +180,29 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HomeContent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
   const HomeContent({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<HomeContent> createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
+  List<LocationData> _dataLocations = [];
+
+  _fetchDataDirections() async {
+    _dataLocations = await ServiceDirections.fetchDirectionsAll();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _fetchDataDirections();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -297,40 +322,44 @@ class HomeContent extends StatelessWidget {
                                                 Navigator.of(context).push(
                                                   MaterialPageRoute(builder:
                                                       (BuildContext context) {
-                                                    return CurrentLocationPage();
+                                                    return const CurrentLocationPage();
                                                   }),
                                                 );
                                               },
-                                              child: Container(
-                                                padding: const EdgeInsets.only(
-                                                  left: 20,
-                                                  right: 20,
-                                                  top: 20,
-                                                  bottom: 10,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    const Icon(Icons
-                                                        .location_on_outlined),
-                                                    Container(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 20),
-                                                      child: Text(
-                                                        'Ubicación Actual',
-                                                        style:
-                                                            titlesHomeTextStyle,
-                                                      ),
-                                                    )
-                                                  ],
+                                              child: ListTile(
+                                                leading: const Icon(
+                                                    Icons.location_on_outlined),
+                                                title: Text(
+                                                  'Ubicación Actual',
+                                                  style: titlesHomeTextStyle,
                                                 ),
                                               ),
                                             ),
-                                            const Divider(
-                                                color: Colors.black45,
-                                                thickness: 0.0,
-                                                indent: 30.0,
-                                                endIndent: 30.0),
+                                            Expanded(
+                                                child: ListView.builder(
+                                                    itemCount:
+                                                        _dataLocations.length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      print(
+                                                          _dataLocations[index]
+                                                              .tagId);
+                                                      return ListTile(
+                                                          leading: _setIcon(
+                                                              _dataLocations[
+                                                                      index]
+                                                                  .tagId),
+                                                          trailing: const Icon(
+                                                              Icons.abc),
+                                                          title: Text(
+                                                            _dataLocations[
+                                                                    index]
+                                                                .directionInOneLine,
+                                                            style:
+                                                                titlesHomeTextStyle,
+                                                          ));
+                                                    }))
                                           ],
                                         ),
                                       );
@@ -375,9 +404,9 @@ class HomeContent extends StatelessWidget {
                 color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-                  child: Container(
+                  child: SizedBox(
                     height: _height * 0.067,
-                    child: SearchInput(
+                    child: const SearchInput(
                         hintText: "¿Qué deseas comprar hoy?...",
                         icon: Icon(Icons.search)),
                   ),
@@ -386,7 +415,7 @@ class HomeContent extends StatelessWidget {
               Container(
                   color: Colors.white,
                   child: buildCarrousel(imageList, _height)),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Container(
                   color: Colors.white, child: buildCategories(_height, _width)),
               Container(
@@ -407,8 +436,8 @@ class HomeContent extends StatelessWidget {
               Text("Recomendados para ti", style: subHeadingTextStyle),
               Text("Ver más", style: buttonTextDarkStyle),
             ]),
-            SizedBox(height: 10),
-            Container(
+            const SizedBox(height: 10),
+            SizedBox(
               width: width,
               height: height * 0.5,
               child: GridView.count(
@@ -536,14 +565,14 @@ class HomeContent extends StatelessWidget {
 
   Container buildCarrousel(imageList, height) {
     return Container(
-      margin: EdgeInsets.only(top: 15, bottom: 15),
+      margin: const EdgeInsets.only(top: 15, bottom: 15),
       child: CarouselSlider.builder(
         itemCount: imageList.length,
         options: CarouselOptions(
             enlargeCenterPage: true,
             height: height * 0.25,
             autoPlay: true,
-            autoPlayInterval: Duration(seconds: 3),
+            autoPlayInterval: const Duration(seconds: 3),
             reverse: false,
             aspectRatio: 16 / 9),
         itemBuilder: (context, i, id) {
@@ -574,5 +603,43 @@ class HomeContent extends StatelessWidget {
         },
       ),
     );
+  }
+
+  //TODO:Set name type location
+
+//TODO: Set icon by type location
+  _setIcon(int typeLocation) {
+    print(typeLocation);
+    switch (typeLocation) {
+      case 0:
+        return const Image(
+            width: 25,
+            height: 25,
+            color: Colors.black,
+            image: AssetImage('assets/icon-casa.png'));
+
+        break;
+      case 1:
+        return const Image(
+            width: 25,
+            height: 25,
+            color: Colors.black,
+            image: AssetImage('assets/icon-obra.png'));
+        break;
+      case 2:
+        return const Image(
+            width: 25,
+            height: 25,
+            color: Colors.black,
+            image: AssetImage('assets/icon-factory.png'));
+        break;
+      case 3:
+        return const Image(
+            width: 25,
+            height: 25,
+            color: Colors.black,
+            image: AssetImage('assets/icon-corporativo.png'));
+        break;
+    }
   }
 }

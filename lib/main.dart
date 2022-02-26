@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mining_solutions/providers/location_provider.dart';
+import 'package:mining_solutions/providers/new_direction_provider.dart';
 import 'package:mining_solutions/providers/register_provider.dart';
 import 'package:mining_solutions/screens/demos/buttons_demo_page.dart';
 import 'package:mining_solutions/screens/login_page.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => VerificationCodeInfo()),
         ChangeNotifierProvider(create: (_) => DirectionProvider()),
         ChangeNotifierProvider(create: (_) => RegisterInfo()),
-        ChangeNotifierProvider(create: (_) => LocationProvider())
+        ChangeNotifierProvider(create: (_) => LocationProvider()),
+        ChangeNotifierProvider(create: (_) => NewDirectionProvider())
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
@@ -63,7 +65,7 @@ class MyApp extends StatelessWidget {
           "enter_verification_code": (context) => EnterVerificationCode(),
           "demo_maps": (context) => DemoMaps(),
           'current_location_confirm': (context) => CurrentLocationPage(),
-          "confirm_location_page": (context) => ConfirmLocationPage(),
+          // "confirm_location_page": (context) => ConfirmLocationPage(),
           "check-register": (context) => CheckReady()
         },
       ),

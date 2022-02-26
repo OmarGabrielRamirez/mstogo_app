@@ -5,6 +5,8 @@ import 'package:mining_solutions/widgets/button_model.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../services/location_services.dart';
+
 class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key}) : super(key: key);
 
@@ -13,17 +15,23 @@ class IntroScreen extends StatefulWidget {
 }
 
 class _IntroScreenState extends State<IntroScreen> {
+  @override
+  void initState() {
+    ServiceLocation.getCurrentLocation(context);
+    super.initState();
+  }
+
   int selectedIndex = 0;
   List<Widget> pages = [
-    IntroImage(
+    const IntroImage(
         height: 300,
         asset: 'assets/rectangle-bg-intro-one.png',
         text: 'Compra sin estrés materiales para tu construcción.'),
-    IntroImage(
+    const IntroImage(
         asset: 'assets/rectangle-bg-intro-two.png',
         height: 300,
         text: 'Recibe tu pedido en el día y hora que decidas.'),
-    IntroImage(
+    const IntroImage(
         asset: 'assets/rectangle-bg-intro-three.png',
         height: 300,
         text: 'Obtén el mejor precio y promociones exclusivas.'),

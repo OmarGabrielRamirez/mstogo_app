@@ -5,7 +5,7 @@ import 'package:mining_solutions/screens/login_page.dart';
 import 'package:mining_solutions/theme.dart';
 
 class SplashPage extends StatefulWidget {
-  SplashPage({Key? key}) : super(key: key);
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   _SplashPageState createState() => _SplashPageState();
@@ -21,7 +21,7 @@ class _SplashPageState extends State<SplashPage> {
       showLoader: true,
       loaderColor: Colors.white,
       loadingText: Text("Versión 1.0", style: loadingStyle),
-      navigator: IntroScreen(),
+      navigator: const IntroScreen(),
       durationInSeconds: 1,
     );
   }

@@ -1,13 +1,13 @@
 import 'package:flutter/widgets.dart';
 
-class LocationProvider extends ChangeNotifier {
+class NewDirectionProvider extends ChangeNotifier {
   double _latitude = 0.0, _longitude = 0.0;
   String _streetName = '',
       _colName = '',
       _postalCode = '',
       _city = '',
       _edo = '';
-
+  
   void setCurrentLatitude(double lt) {
     _latitude = lt;
     notifyListeners();

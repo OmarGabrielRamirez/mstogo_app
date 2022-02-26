@@ -26,7 +26,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    ServiceLocation.getCurrentLocation(context);
   }
 
   TextEditingController _emailController = TextEditingController();
@@ -135,18 +134,20 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
-                      height: 35.0,
-                      width: 180.0,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
+                    height: 35.0,
+                    width: 180.0,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
                         image: AssetImage('assets/Logo-Hubmine.png'),
                         fit: BoxFit.fitWidth,
-                      ))),
-                  SizedBox(
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
                     height: 10,
                   ),
                   Text(
@@ -157,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     "Bienvenido de vuelta, entra a tu cuenta",
                     style: subtitleLoginTextStyle,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Input(
@@ -165,11 +166,11 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.emailAddress,
                     label: "Email",
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   PasswordField(controller: _passwordController),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                       alignment: Alignment.topRight,
                       child: InkWell(
@@ -198,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          HomePage()),
+                                          const HomePage()),
                                   (Route<dynamic> route) => false);
                             }
                             // signIn(_emailController.text,
