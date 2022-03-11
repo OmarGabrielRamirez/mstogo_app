@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mining_solutions/providers/register_provider.dart';
-import 'package:mining_solutions/screens/home_page.dart';
+import 'package:mining_solutions/screens/home/home_page.dart';
 import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/alert_dialog.dart';
 import 'package:mining_solutions/widgets/button_model.dart';

@@ -70,7 +70,9 @@ dev_dependencies:
   geocoding: ^2.0.2
   dots_indicator: ^2.0.0
   easy_splash_screen: ^1.0.3
+  bot_toast: ^4.0.1
   flutter_launcher_icons:
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 flutter_icons:

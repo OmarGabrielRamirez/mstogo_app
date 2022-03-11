@@ -99,27 +99,31 @@ class _ConfirmLocationPageState extends State<ConfirmLocationPage> {
                     height: size.height * 0.06,
                     action: () async {
                       if (_isSelectedType) {
-                        if (await ServiceDirections.saveDirection(LocationData(
-                          city: _cityController.text.isEmpty
-                              ? ''
-                              : _cityController.text,
-                          details: _detailsController.text.isEmpty
-                              ? ''
-                              : _detailsController.text,
-                          directionInOneLine: _addressLineOneController.text.isEmpty
-                              ? ''
-                              : _detailsController.text,
-                          name: _nameLocationController.text.isEmpty
-                              ? ''
-                              : _nameLocationController.text,
-                          state: _edoController.text.isEmpty
-                              ? ''
-                              : _edoController.text,
-                          tagId: selectedIndex,
-                          lat: double.parse(widget.latitud),
-                          log: double.parse(widget.longitud),
-                          haveDetails: _detailsController.text.isEmpty,
-                        ))) {
+                        if (await ServiceDirections.saveDirection(
+                          LocationData(
+                            id: 0,
+                            city: _cityController.text.isEmpty
+                                ? ''
+                                : _cityController.text,
+                            details: _detailsController.text.isEmpty
+                                ? ''
+                                : _detailsController.text,
+                            directionInOneLine:
+                                _addressLineOneController.text.isEmpty
+                                    ? ''
+                                    : _addressLineOneController.text,
+                            name: _nameLocationController.text.isEmpty
+                                ? ''
+                                : _nameLocationController.text,
+                            state: _edoController.text.isEmpty
+                                ? ''
+                                : _edoController.text,
+                            tagId: selectedIndex,
+                            lat: double.parse(widget.latitud),
+                            log: double.parse(widget.longitud),
+                            haveDetails: _detailsController.text.isEmpty,
+                          ),
+                        )) {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               'home', (Route<dynamic> route) => false);
                         } else {
@@ -239,7 +243,7 @@ class _ConfirmLocationPageState extends State<ConfirmLocationPage> {
                       Input(
                         controller: _detailsController,
                         keyboardType: TextInputType.text,
-                        label: "Detalles (Referencias a la ubicación)",
+                        label: "Detalles (Referencias a la dirección)",
                       ),
                       const SizedBox(height: 20),
                       Padding(

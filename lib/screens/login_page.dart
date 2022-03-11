@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:mining_solutions/screens/home_page.dart';
+import 'package:mining_solutions/screens/home/home_page.dart';
 import 'package:mining_solutions/services/auth_services.dart';
 import 'package:mining_solutions/theme.dart';
 import 'package:mining_solutions/widgets/alert_dialog.dart';
@@ -212,10 +212,10 @@ class _LoginPageState extends State<LoginPage> {
                           },
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Text("o inicia via"),
+                      const Text("o inicia via"),
                       SizedBox(
                         height: 20,
                       ),

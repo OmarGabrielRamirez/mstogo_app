@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class LocationData {
+  int id;
   String name;
   String city;
   String state;
@@ -11,6 +12,7 @@ class LocationData {
   double log;
   double lat;
   LocationData({
+    required this.id,
     required this.name,
     required this.city,
     required this.state,
@@ -24,6 +26,7 @@ class LocationData {
 
   Map<dynamic, dynamic> toMap() {
     return {
+      'id': id,
       'location_name': name,
       'city': city,
       'state': state,
@@ -39,6 +42,7 @@ class LocationData {
   factory LocationData.fromMap(Map<dynamic, dynamic> map) {
     return LocationData(
       name: map['location_name'] ?? '',
+      id: map['id'] ?? '',
       city: map['city'] ?? '',
       state: map['state'] ?? '',
       directionInOneLine: map['direction_line_1'] ?? '',

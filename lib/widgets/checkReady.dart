@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mining_solutions/screens/home_page.dart';
+import 'package:mining_solutions/screens/home/home_page.dart';
 import 'package:mining_solutions/theme.dart';
 
 class CheckReady extends StatefulWidget {
