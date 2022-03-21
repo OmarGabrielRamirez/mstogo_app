@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mining_solutions/theme.dart';
 
 import '../screens/products_all_page.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class Category extends StatefulWidget {
   final String assetPath;
@@ -25,7 +27,10 @@ class _CategoryState extends State<Category> {
         Navigator.of(context).push(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                ProductsAllPage(idCategory: widget.idCategory, nameCategory: widget.title,),
+                ProductsAllPage(
+              idCategory: widget.idCategory,
+              nameCategory: widget.title,
+            ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               var begin = Offset(2.7, 2.0);
@@ -46,10 +51,14 @@ class _CategoryState extends State<Category> {
           Container(
             height: MediaQuery.of(context).size.height * 0.09,
             width: MediaQuery.of(context).size.width / 5,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: NetworkImage(widget.assetPath), fit: BoxFit.fill),
+            child: CachedNetworkImage(
+              imageUrl: widget.assetPath,
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  CircularProgressIndicator(
+                value: downloadProgress.progress,
+                color: primaryClr,
+              ),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
           ),
           const SizedBox(

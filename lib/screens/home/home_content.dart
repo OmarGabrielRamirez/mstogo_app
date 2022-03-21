@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mining_solutions/models/location_data.dart';
+import 'package:mining_solutions/screens/home/home_content_skeleton.dart';
 import 'package:mining_solutions/screens/locations/current_location_page.dart';
 import 'package:mining_solutions/screens/locations/edit_location_page.dart';
 import 'package:mining_solutions/services/directions_services.dart';
@@ -14,6 +15,8 @@ import '../locations/current_location_page.dart';
 import '../demos/buttons_demo_page.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:skeletons/skeletons.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeContent extends StatefulWidget {
   const HomeContent({
@@ -50,276 +53,281 @@ class _HomeContentState extends State<HomeContent> {
     final _width = MediaQuery.of(context).size.width;
 
     return SafeArea(
-        bottom: false,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(top: 10.0, left: 30.0, right: 30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 30.0,
-                        width: 140.0,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/Logo-Hubmine.png'),
-                            fit: BoxFit.fitWidth,
-                          ),
+      bottom: false,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(top: 10.0, left: 30.0, right: 30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 30.0,
+                      width: 140.0,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/Logo-Hubmine.png'),
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          print("Ver notificaciones");
-                        },
-                        child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 0.3,
-                                color: Colors.black26,
-                              ),
-                              borderRadius: const BorderRadius.all(
-                                  Radius.circular(
-                                      10.0) //                 <--- border radius here
-                                  ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        print("Ver notificaciones");
+                      },
+                      child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 0.3,
+                              color: Colors.black26,
                             ),
-                            child: const Icon(Icons.notifications,
-                                color: primaryClr)),
-                      ),
-                    ],
-                  ),
+                            borderRadius: const BorderRadius.all(
+                                Radius.circular(
+                                    10.0) //                 <--- border radius here
+                                ),
+                          ),
+                          child: const Icon(Icons.notifications,
+                              color: primaryClr)),
+                    ),
+                  ],
                 ),
               ),
-              Container(
-                color: Colors.white,
-                child: Row(children: [
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                    child: SizedBox(
-                      height: _height * 0.11,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 16.0, left: 16.0),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Ubicación", style: subHeadingTextStyle),
-                              const SizedBox(height: 7),
-                              GestureDetector(
-                                onTap: () {
-                                  showModalBottomSheet<void>(
-                                    context: context,
-                                    isScrollControlled: true,
-                                    shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(30),
-                                      topRight: Radius.circular(30),
-                                    )),
-                                    builder: (BuildContext context) {
-                                      return SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height -
-                                                250,
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              padding: const EdgeInsets.only(
-                                                  top: 20, bottom: 10),
-                                              child: Text(
-                                                'Agrega o escoge una dirección',
+            ),
+            Container(
+              color: Colors.white,
+              child: Row(children: [
+                Expanded(
+                    child: Padding(
+                  padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                  child: SizedBox(
+                    height: _height * 0.11,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Ubicación", style: subHeadingTextStyle),
+                            const SizedBox(height: 7),
+                            GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet<void>(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(30),
+                                    topRight: Radius.circular(30),
+                                  )),
+                                  builder: (BuildContext context) {
+                                    return SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height -
+                                              250,
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.only(
+                                                top: 20, bottom: 10),
+                                            child: Text(
+                                              'Agrega o escoge una dirección',
+                                              style: titlesHomeTextStyle,
+                                              textScaleFactor: 1.2,
+                                            ),
+                                          ),
+                                          const Divider(
+                                              color: Colors.black45,
+                                              thickness: 0.0,
+                                              indent: 30.0,
+                                              endIndent: 30.0),
+                                          Container(
+                                            padding: const EdgeInsets.only(
+                                                left: 20, right: 20),
+                                            child: const SearchInput(
+                                              hintText: "Ingresa una dirección",
+                                              icon: Icon(Icons.location_on),
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(builder:
+                                                    (BuildContext context) {
+                                                  return const CurrentLocationPage();
+                                                }),
+                                              );
+                                            },
+                                            child: ListTile(
+                                              leading: const Icon(
+                                                  Icons.location_on_outlined),
+                                              title: Text(
+                                                'Ubicación Actual',
                                                 style: titlesHomeTextStyle,
-                                                textScaleFactor: 1.2,
                                               ),
                                             ),
-                                            const Divider(
-                                                color: Colors.black45,
-                                                thickness: 0.0,
-                                                indent: 30.0,
-                                                endIndent: 30.0),
-                                            Container(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20, right: 20),
-                                              child: const SearchInput(
-                                                hintText:
-                                                    "Ingresa una dirección",
-                                                icon: Icon(Icons.location_on),
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                Navigator.of(context).push(
-                                                  MaterialPageRoute(builder:
-                                                      (BuildContext context) {
-                                                    return const CurrentLocationPage();
-                                                  }),
+                                          ),
+                                          Expanded(
+                                            child: ListView.builder(
+                                              itemCount: _dataLocations.length,
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                return ListTile(
+                                                  leading: _setIcon(
+                                                      _dataLocations[index]
+                                                          .tagId),
+                                                  trailing: DropdownButton(
+                                                    icon: const Icon(
+                                                        Icons.more_horiz),
+                                                    elevation: 16,
+                                                    style: const TextStyle(
+                                                        color: Colors.black),
+                                                    onChanged:
+                                                        (int? newValue) async {
+                                                      if (newValue == 0) {
+                                                        if (await ServiceDirections
+                                                            .deleteDirection(
+                                                                _dataLocations[
+                                                                        index]
+                                                                    .id)) {
+                                                          Navigator.of(context)
+                                                              .pushNamed(
+                                                                  'home');
+                                                        }
+                                                      } else {
+                                                        Navigator.of(context)
+                                                            .push(
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext
+                                                                      context) =>
+                                                                  EditLocationPage(
+                                                                    data:
+                                                                        LocationData(
+                                                                      id: _dataLocations[
+                                                                              index]
+                                                                          .id,
+                                                                      city: _dataLocations[
+                                                                              index]
+                                                                          .city,
+                                                                      details: _dataLocations[
+                                                                              index]
+                                                                          .details,
+                                                                      directionInOneLine:
+                                                                          _dataLocations[index]
+                                                                              .directionInOneLine,
+                                                                      name: _dataLocations[
+                                                                              index]
+                                                                          .name,
+                                                                      state: _dataLocations[
+                                                                              index]
+                                                                          .state,
+                                                                      tagId: _dataLocations[
+                                                                              index]
+                                                                          .tagId,
+                                                                      lat: _dataLocations[
+                                                                              index]
+                                                                          .lat,
+                                                                      log: _dataLocations[
+                                                                              index]
+                                                                          .log,
+                                                                      haveDetails:
+                                                                          _dataLocations[index]
+                                                                              .haveDetails,
+                                                                    ),
+                                                                  )),
+                                                        );
+                                                      }
+                                                    },
+                                                    items: const [
+                                                      DropdownMenuItem<int>(
+                                                        value: 0,
+                                                        child: Text('Eliminar'),
+                                                      ),
+                                                      DropdownMenuItem<int>(
+                                                        value: 1,
+                                                        child: Text('Editar'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  title: Text(
+                                                    _dataLocations[index]
+                                                        .directionInOneLine,
+                                                    style: titlesHomeTextStyle,
+                                                  ),
                                                 );
                                               },
-                                              child: ListTile(
-                                                leading: const Icon(
-                                                    Icons.location_on_outlined),
-                                                title: Text(
-                                                  'Ubicación Actual',
-                                                  style: titlesHomeTextStyle,
-                                                ),
-                                              ),
                                             ),
-                                            Expanded(
-                                              child: ListView.builder(
-                                                itemCount:
-                                                    _dataLocations.length,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        int index) {
-                                                  return ListTile(
-                                                    leading: _setIcon(
-                                                        _dataLocations[index]
-                                                            .tagId),
-                                                    trailing: DropdownButton(
-                                                      icon: const Icon(
-                                                          Icons.more_horiz),
-                                                      elevation: 16,
-                                                      style: const TextStyle(
-                                                          color: Colors.black),
-                                                      onChanged: (int?
-                                                          newValue) async {
-                                                        if (newValue == 0) {
-                                                          if (await ServiceDirections
-                                                              .deleteDirection(
-                                                                  _dataLocations[
-                                                                          index]
-                                                                      .id)) {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .pushNamed(
-                                                                    'home');
-                                                          }
-                                                        } else {
-                                                          Navigator.of(context)
-                                                              .push(
-                                                            MaterialPageRoute(
-                                                                builder: (BuildContext
-                                                                        context) =>
-                                                                    EditLocationPage(
-                                                                      data:
-                                                                          LocationData(
-                                                                        id: _dataLocations[index]
-                                                                            .id,
-                                                                        city: _dataLocations[index]
-                                                                            .city,
-                                                                        details:
-                                                                            _dataLocations[index].details,
-                                                                        directionInOneLine:
-                                                                            _dataLocations[index].directionInOneLine,
-                                                                        name: _dataLocations[index]
-                                                                            .name,
-                                                                        state: _dataLocations[index]
-                                                                            .state,
-                                                                        tagId: _dataLocations[index]
-                                                                            .tagId,
-                                                                        lat: _dataLocations[index]
-                                                                            .lat,
-                                                                        log: _dataLocations[index]
-                                                                            .log,
-                                                                        haveDetails:
-                                                                            _dataLocations[index].haveDetails,
-                                                                      ),
-                                                                    )),
-                                                          );
-                                                        }
-                                                      },
-                                                      items: const [
-                                                        DropdownMenuItem<int>(
-                                                          value: 0,
-                                                          child:
-                                                              Text('Eliminar'),
-                                                        ),
-                                                        DropdownMenuItem<int>(
-                                                          value: 1,
-                                                          child: Text('Editar'),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    title: Text(
-                                                      _dataLocations[index]
-                                                          .directionInOneLine,
-                                                      style:
-                                                          titlesHomeTextStyle,
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            )
-                                          ],
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                                // Navigator.of(context).pushNamed('demo_maps');
+                                // print("Obteniendo ubicación");
+                              },
+                              child: SizedBox(
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.location_on,
+                                        color: Colors.red),
+                                    const SizedBox(width: 6),
+                                    Consumer<LocationProvider>(builder:
+                                        (context, locationProvider, child) {
+                                      return Flexible(
+                                        child: Text(
+                                          locationProvider.nameStreet != ""
+                                              ? locationProvider.nameStreet
+                                              : "Villas de San Jerónimo #203",
+                                          style: titlesHomeTextStyle,
+                                          textScaleFactor: 0.97,
                                         ),
                                       );
-                                    },
-                                  );
-                                  // Navigator.of(context).pushNamed('demo_maps');
-                                  // print("Obteniendo ubicación");
-                                },
-                                child: SizedBox(
-                                  child: Row(
-                                    children: [
-                                      const Icon(Icons.location_on,
-                                          color: Colors.red),
-                                      const SizedBox(width: 6),
-                                      Consumer<LocationProvider>(builder:
-                                          (context, locationProvider, child) {
-                                        return Flexible(
-                                          child: Text(
-                                            locationProvider.nameStreet != ""
-                                                ? locationProvider.nameStreet
-                                                : "Villas de San Jerónimo #203",
-                                            style: titlesHomeTextStyle,
-                                            textScaleFactor: 0.97,
-                                          ),
-                                        );
-                                      }),
-                                      const SizedBox(width: 3),
-                                      const Icon(
-                                        Icons.arrow_drop_down_outlined,
-                                      ),
-                                    ],
-                                  ),
+                                    }),
+                                    const SizedBox(width: 3),
+                                    const Icon(
+                                      Icons.arrow_drop_down_outlined,
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ]),
-                      ),
+                            ),
+                          ]),
                     ),
-                  ))
-                ]),
-              ),
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-                  child: SizedBox(
-                    height: _height * 0.067,
-                    child: const SearchInput(
-                        hintText: "¿Qué deseas comprar hoy?...",
-                        icon: Icon(Icons.search)),
                   ),
+                ))
+              ]),
+            ),
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+                child: SizedBox(
+                  height: _height * 0.067,
+                  child: const SearchInput(
+                      hintText: "¿Qué deseas comprar hoy?...",
+                      icon: Icon(Icons.search)),
                 ),
               ),
-              Container(
-                  color: Colors.white,
-                  child: buildCarrousel(imageList, _height)),
-              const SizedBox(height: 10),
-              Container(
-                  color: Colors.white, child: buildCategories(_height, _width)),
-              Container(
-                  color: Colors.white,
-                  child: buildRecommendForYou(_height, _width))
-            ],
-          ),
-        ));
+            ),
+            Container(
+                color: Colors.white, child: buildCarrousel(imageList, _height)),
+            const SizedBox(height: 10),
+            Container(
+                color: Colors.white, child: buildCategories(_height, _width)),
+            Container(
+                color: Colors.white,
+                child: buildRecommendForYou(_height, _width))
+          ],
+        ),
+      ),
+    );
   }
 
   Column buildRecommendForYou(height, width) {
@@ -335,7 +343,7 @@ class _HomeContentState extends State<HomeContent> {
             const SizedBox(height: 10),
             SizedBox(
               width: width,
-              height: height * 0.5,
+              height: height * 0.5 - 95,
               child: GridView.count(
                 crossAxisCount: 2,
                 padding: const EdgeInsets.only(left: 0.0, top: 10),
@@ -483,12 +491,26 @@ class _HomeContentState extends State<HomeContent> {
               //ClipRRect for image border radius
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  imageList[i],
-                  height: 100,
-                  width: 300,
-                  fit: BoxFit.cover,
-                ),
+                child: CachedNetworkImage(
+                    imageUrl: imageList[i],
+                    height: 100,
+                    width: 300,
+                    fit: BoxFit.cover,
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => SizedBox(
+                              height: 50.0,
+                              width: 50.0,
+                              child: Image.asset(
+                                'assets/Logo-Hubmine.png',
+                                fit: BoxFit.scaleDown,
+                              ),
+                            )),
+                // child: Image.network(
+                //   imageList[i],
+                //   height: 100,
+                //   width: 300,
+                //   fit: BoxFit.cover,
+                // ),
               ),
             ),
             onTap: () {

@@ -61,8 +61,8 @@ class MyApp extends StatelessWidget {
         routes: {
           "splash": (context) => const SplashPage(),
           "intro_screen": (context) => const IntroScreen(),
-          "select_type_account": (context) => SelectTypeAccountPage(),
-          "login": (context) => LoginPage(),
+          "select_type_account": (context) => const SelectTypeAccountPage(),
+          "login": (context) => const LoginPage(),
           "register": (context) => RegisterPage(),
           "step-two-register": (context) => StepTwoRegisterPage(),
           "home": (context) => HomePage(),

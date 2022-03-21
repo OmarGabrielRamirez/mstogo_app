@@ -5,6 +5,7 @@ import 'package:badges/badges.dart';
 import 'package:mining_solutions/models/location_data.dart';
 import 'package:mining_solutions/screens/cart_page.dart';
 import 'package:mining_solutions/screens/home/home_content.dart';
+import 'package:mining_solutions/screens/home/home_content_layout.dart';
 import 'package:mining_solutions/screens/login_page.dart';
 import 'package:mining_solutions/screens/orders_page.dart';
 import 'package:mining_solutions/screens/profile_page.dart';
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   int badge = 0;
 
   List<Widget> pages = [
-    const HomeContent(),
+    const HomeContentLayout(),
     const CartPage(),
     const OrdersPage(),
     const ProfilePage(),

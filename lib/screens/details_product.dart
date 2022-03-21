@@ -40,7 +40,7 @@ class _DetailsProductPageState extends State<DetailsProductPage> {
                 .white, // Set any color of status bar you want; or it defaults to your theme's primary color
           )),
       bottomNavigationBar: Container(
-        height: 110,
+        height: 10,
         decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(25)),
             gradient: LinearGradient(
@@ -175,260 +175,412 @@ class _DetailsProductPageState extends State<DetailsProductPage> {
               right: 0,
               child: Container(
                 color: Colors.white,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 27, left: 34, bottom: 20, right: 32),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(bottom: 5),
-                                  child: Text(
-                                    widget.category,
-                                    style: GoogleFonts.inter(
-                                        fontSize: 19,
-                                        color: primaryClr,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    widget.titleProduct,
-                                    style: GoogleFonts.inter(
-                                        fontSize: 29,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 103,
-                            height: 42,
-                            decoration: const BoxDecoration(
-                              color: primaryLightClr,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(30.0),
-                                bottomRight: Radius.circular(30.0),
-                                topLeft: Radius.circular(30.0),
-                                topRight: Radius.circular(30.0),
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: const Icon(
-                                    Icons.chat,
-                                    color: primaryClr,
-                                  ),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                    left: 10,
-                                  ),
-                                  child: const Text(
-                                    'Chat',
-                                    style: TextStyle(
-                                      color: primaryClr,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 27, left: 34, bottom: 20, right: 32),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(bottom: 5),
+                                    child: Text(
+                                      widget.category,
+                                      style: GoogleFonts.inter(
+                                          fontSize: 19,
+                                          color: primaryClr,
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 34, right: 34, bottom: 10),
-                            width: MediaQuery.of(context).size.width,
-                            child: Text(
-                              'Descripción',
-                              style: GoogleFonts.inter(
-                                  fontSize: 19,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(left: 34, right: 34),
-                            width: MediaQuery.of(context).size.width,
-                            child: Text(
-                              widget.descrption,
-                              textAlign: TextAlign.justify,
-                              textScaleFactor: 1.17,
-                              style: GoogleFonts.inter(
-                                color: Colors.black.withOpacity(0.5),
-                                fontWeight: FontWeight.w400,
+                                  Container(
+                                    child: Text(
+                                      widget.titleProduct,
+                                      style: GoogleFonts.inter(
+                                          fontSize: 29,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 34, right: 34, bottom: 10),
-                            width: MediaQuery.of(context).size.width,
-                            child: Text(
-                              'Características técnicas',
-                              style: GoogleFonts.inter(
-                                  fontSize: 19,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: MediaQuery.of(context).size.width / 2,
-                                  padding: const EdgeInsets.only(
-                                      left: 34, right: 10, bottom: 5),
-                                  height: 43,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 35,
-                                        width: 35,
-                                        child: Icon(Icons.accessible_sharp),
+                            Container(
+                              width: 103,
+                              height: 42,
+                              decoration: const BoxDecoration(
+                                color: primaryLightClr,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(30.0),
+                                  bottomRight: Radius.circular(30.0),
+                                  topLeft: Radius.circular(30.0),
+                                  topRight: Radius.circular(30.0),
+                                ),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(left: 20),
+                                    child: const Icon(
+                                      Icons.chat,
+                                      color: primaryClr,
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                      left: 10,
+                                    ),
+                                    child: const Text(
+                                      'Chat',
+                                      style: TextStyle(
+                                        color: primaryClr,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
                                       ),
-                                      Container(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              child: Text('Peso Volumétrico'),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 34, right: 34, bottom: 15),
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                'Descripción',
+                                style: GoogleFonts.inter(
+                                    fontSize: 17,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(left: 34, right: 34),
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                widget.descrption,
+                                maxLines: 5,
+                                textAlign: TextAlign.justify,
+                                textScaleFactor: 1.0,
+                                style: GoogleFonts.inter(
+                                  color: Colors.black.withOpacity(0.6),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        content: Container(
+                                          height: 200,
+                                          width: 400,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    'Características técnicas',
+                                                    style: GoogleFonts.inter(
+                                                        fontSize: 16,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.w700),
+                                                  ),
+                                                  IconButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.close,
+                                                        color: Colors.black,
+                                                      ))
+                                                ],
+                                              ),
+                                              Container(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10,
+                                                    bottom: 5,
+                                                    top: 10),
+                                                child: Row(
+                                                  children: [
+                                                    const SizedBox(
+                                                      height: 35,
+                                                      width: 35,
+                                                      child: Icon(Icons
+                                                          .accessible_sharp),
+                                                    ),
+                                                    Container(
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Container(
+                                                            child: Text(
+                                                              'Peso Volumétrico',
+                                                              style: GoogleFonts.inter(
+                                                                  fontSize: 13,
+                                                                  color:
+                                                                      darkGreyClr,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            child: Text(
+                                                              widget.measures,
+                                                              style: GoogleFonts.inter(
+                                                                  fontSize: 13,
+                                                                  color:
+                                                                      darkGreyClr,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10, bottom: 5),
+                                                child: Row(
+                                                  children: [
+                                                    const SizedBox(
+                                                      height: 35,
+                                                      width: 35,
+                                                      child: Icon(Icons
+                                                          .accessible_sharp),
+                                                    ),
+                                                    Container(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 10),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Container(
+                                                            child: Text(
+                                                              'Medidas',
+                                                              style: GoogleFonts.inter(
+                                                                  fontSize: 13,
+                                                                  color:
+                                                                      darkGreyClr,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700),
+                                                            ),
+                                                          ),
+                                                          Container(
+                                                            child: Text(
+                                                              widget.weight,
+                                                              style: GoogleFonts.inter(
+                                                                  fontSize: 13,
+                                                                  color:
+                                                                      darkGreyClr,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.only(
+                                    left: 34, right: 34, bottom: 10),
+                                width: MediaQuery.of(context).size.width,
+                                child: Text(
+                                  'Ver características técnicas',
+                                  style: GoogleFonts.inter(
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                      decoration: TextDecoration.underline,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 34, right: 34, bottom: 7),
+                              width: MediaQuery.of(context).size.width,
+                              child: Text(
+                                '¿Que cantidad necesitas?',
+                                style: GoogleFonts.inter(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                            Container(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.only(
+                                        left: 34, right: 10, bottom: 0),
+                                    height: 43,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                child: const Icon(Icons.remove),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 10),
+                                          child: Text(
+                                            '50',
+                                            style: GoogleFonts.inter(
+                                                fontSize: 16,
+                                                color: darkGreyClr,
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                child: const Icon(Icons.add),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      'Toneladas',
+                                      style: GoogleFonts.inter(
+                                          fontSize: 16,
+                                          color: darkGreyClr,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding:const EdgeInsets.only(top: 25),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const SizedBox(
+                                    width: 28,
+                                  ),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      child: MaterialButton(
+                                        elevation: 0,
+                                        onPressed: () {},
+                                        color: primaryLightClr,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(30),
+                                        ),
+                                        child: Expanded(
+                                          child: SizedBox(
+                                            height: 50,
+                                            child: Center(
+                                              child: Text(
+                                                "\$22000 M.N",
+                                                style: GoogleFonts.inter(
+                                                    fontSize: 17,
+                                                    color: primaryClr,
+                                                    fontWeight: FontWeight.w600),
+                                              ),
                                             ),
-                                            Container(
-                                              child: Text(widget.measures),
-                                            )
-                                          ],
+                                          ),
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: MediaQuery.of(context).size.width / 2,
-                                  padding: const EdgeInsets.only(
-                                      left: 34, right: 10, bottom: 5),
-                                  height: 43,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 35,
-                                        width: 35,
-                                        child: Icon(Icons.accessible_sharp),
                                       ),
-                                      Container(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              child: Text('Medidas'),
-                                            ),
-                                            Container(
-                                              child: Text(widget.measures),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                                  Expanded(
+                                    child: Button(
+                                      height: 50,
+                                      color: const Color(0xFF259793),
+                                      text: Text("Añadir al carrito",
+                                          style: GoogleFonts.inter(
+                                              fontSize: 15,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600)),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 28,
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.only(
-                                left: 34, right: 34, bottom: 10),
-                            width: MediaQuery.of(context).size.width,
-                            child: Text(
-                              '¿Que cantidad necesitas?',
-                              style: GoogleFonts.inter(
-                                  fontSize: 19,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: MediaQuery.of(context).size.width / 2,
-                                  padding: const EdgeInsets.only(
-                                      left: 34, right: 10, bottom: 5),
-                                  height: 43,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              child: const Icon(Icons.remove),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Text('0.5'),
-                                      ),
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                              child: const Icon(Icons.add),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  child: Text('Toneladas'),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             )
